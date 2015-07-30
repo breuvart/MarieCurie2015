@@ -1,0 +1,311 @@
+\documentclass{article}[11pt]
+\usepackage[
+  a4paper,
+  margin = 15mm,
+]{geometry}
+\usepackage{todonotes}
+%\usepackage[utf8]{inputenc}
+%\usepackage[english, frenchb]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{pgfgantt}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xspace}
+\setlength{\marginparwidth}{1.2cm}
+
+\newcommand\BLL{BLL\xspace}
+\newcommand\DlPCF{D$_\ell$PCF\xspace}
+\newcommand\DFuzz{DFuzz\xspace}
+
+
+\newganttlinktype{rd}{
+\ganttsetstartanchor{on right}
+\ganttsetendanchor{on top}
+\draw[/pgfgantt/link]
+(\xLeft, \yUpper) --
+% second segment (right)
+(\xRight, \yUpper) --
+(\xRight, \yLower);
+}
+\newganttlinktype{ru}{
+\ganttsetstartanchor{on right}
+\ganttsetendanchor{on bottom}
+\draw[/pgfgantt/link]
+(\xLeft, \yUpper) --
+% second segment (right)
+(\xRight, \yUpper) --
+(\xRight, \yLower);
+}
+\newganttlinktype{rus}{
+\ganttsetstartanchor{on right}
+\ganttsetendanchor{on bottom=0.3}
+\draw[/pgfgantt/link]
+(\xLeft, \yUpper) --
+% second segment (right)
+(\xRight, \yUpper) --
+(\xRight, \yLower);
+}
+\newganttlinktype{rr}{
+\ganttsetstartanchor{on right}
+\ganttsetendanchor{on left}
+\draw[/pgfgantt/link]
+(\xLeft, \yUpper) --
+% second segment (right)
+(\xLeft, \yLower) --
+(\xRight, \yLower);
+}
+\newganttlinktype{uu}{
+\ganttsetstartanchor{on top=1}
+\ganttsetendanchor{on bottom=0.753}
+\draw[/pgfgantt/link]
+(\xLeft, \yUpper) --
+(\xRight, \yLower);
+}
+\newganttlinktype{uus}{
+\ganttsetstartanchor{on top=1}
+\ganttsetendanchor{on bottom=0.336}
+\draw[/pgfgantt/link]
+(\xLeft, \yUpper) --
+(\xRight, \yLower);
+}
+\newganttlinktype{dd}{
+\ganttsetstartanchor{on bottom=1}
+\ganttsetendanchor{on top=0.753}
+\draw[/pgfgantt/link]
+(\xLeft, \yUpper) --
+(\xRight, \yLower);
+}
+
+\pagestyle{fancyplain}
+\lhead{}
+\chead{{\color{gray}SATIR - GF}}
+\rhead{}
+\lfoot{{\color{gray}SATIR - Part B}}
+\cfoot{}
+\rfoot{{\color{gray}\thepage\ of \pageref{LastPage}}}
+
+
+\title{SATIR\\ Statical Analysis via Type InfeRence}
+
+
+
+\begin{document}
+
+\begin{titlepage} 
+  \vspace*{1.5cm}%\stretch{1.0}}
+  \begin{center}
+    \textsc{\huge\bf Start Page}\\[1.5cm]
+    \textsc{\huge MARIE SKŁODOWSKA-CURIE ACTIONS}\\[1.5cm]
+    \textsc{\bf\LARGE Individual Fellowships (IF)}\\
+    \textsc{\bf\LARGE Call: H2020-MSCA-IF-2015}\\[1.5cm]
+    \textsc{\LARGE PART B}\\[4cm] 
+    \textsc{\Huge ``SATIR''}\\[0.5cm]
+    \textsc{\LARGE ``Static Analysis via Type InfeRence''}\\[9cm]
+    \textsc{\LARGE This proposal is to be evaluated as:}\\[0.5cm]
+    \textsc{\LARGE [Global Fellowship (GF)]}
+  \end{center} 
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+
+\section*{List of Participants}
+
+\newpage
+
+%start page count
+
+\section{Summary}
+
+Functional programming languages often use complex type systems describing the behavior of the programs. These types are statically inferred before the compilation, acting as a first test for the correctness of the program. However, the verification is low level and basically verify that the composition of programs never fails due to incompatibility of format.
+
+Most occurrences of static analysis are generally performed by implementations of some abstract interpretation (AI) over the whole program. Those tools are very efficient but lack of modularity. This means that any new analysis has to be performed through the whole program, including libraries. Such a global analysis has two flaws: is often too resource consuming to be used on a regular basis, and the behaviors of common libraries are approximated while it could be interesting to manually optimize their interpretation once and for all.
+
+In parallel, several functional languages such as F* or Idris offer to join program proofs with some proofs of correctness encoded in a dependent type. These proofs are formally expliciting important invariants of the program that should be of use for automatically check any other properties. Without going that far, advanced type systems offer several ways to encode semantical information inside the type (for readability or for safety). However, actual tools are basically forgetting the type of a program before running the analysis, loosing all this semantical information given by the programmer.
+
+In this project, we propose to investigate a way to recover as much information as possible from the type inference which is one of the most complex kind of modular and statical analysis. The ideal outcome would be a static analyzer for functional languages that can compete with existing ones while being completely modular.
+
+For this purpose, we are focusing on emerging type systems that attach to each type some parameters. Those parameters represent either qualitative statement or quantitative information over resources. Such type systems will be called graded types systems.
+
+A good comparison would be Hoare triplets with preconditions and postconditions that should match to each other while composing, with a few important differences:
+\begin{itemize}
+\item A program is not only associated with a precondition and a postcondition corresponding to the parametrization of the input and output types, but also with {\bf higher order conditions} parameterizing every subtypes (especially arrow types).
+\item All of these conditions are dependent over ``resource variables'' that are instantiated by unification during the composition (adding some new constraints). In particular, this allows any program to have a {\bf most general type} that characterizes it; this most general type is computed once and can be reused each time the program is used in a larger project.
+\item Constraints are not logical propositions but element of an {\bf algebraic structure}. These structures take shape of ordered monoids or ordered semirings. They are reminiscent of abstract interpretation's domains.
+\end{itemize}
+
+The SATIR project has three objectives. The {\bf first} (and main) {\bf objective} is to develop the theory of graded type systems in order to be as expressive as possible, to adapt to existing functional languages and to recover AI's constructions (Galois relations and widening). The {\bf second objective} is to track existing instances of graded type systems and to integrate them in our general framework. The {\bf third objective} is to select a fragment of the system for the purpose of implementation: this fragment need to be inferenceable up-to the use of some widening and calls over an SMT solver (to resolve algebraic constraints).
+
+
+
+
+\section{Excellence}
+\subsection{Quality, innovative aspects and credibility of the research\\  (including inter/multidisciplinary aspects)}
+
+The SATIR project intends to specify a particular subclass of abstract interpretation that we call graded type systems. Another way to state it is that SATIR project intends to reinject the whole power of abstract interpretation inside a type system by substituting the choice of the domain by the choice of some more refine algebraic structures called grading structures.
+
+\noindent{\bf Objective 1: Theory\ \ } Our main objective is to build up a whole theory of graded types in its most general version. This objective can be split in three successive goals. {\bf Goal 1.1} consists in identifying the exact nature of grading structures. {\bf Goal 1.2} aims at transporting abstract interpretation principles to graded type systems. Finally, {\bf Goal 1.3} extends the result in several directions (generalizations to a full fledged language and to intersection type systems).
+
+\noindent{\bf Objective 2: Applications\ \ } The second objective tends to stick to real applications. Indeed, we intend to spend an important time looking for existing related work and possible applications. The intent behinds this objective is both to get some inspiration for the general case and to diffuse our results. There are three phases, or goals, regarding the applications. {\bf Goal 2.1} aims at studying and internalizes actual fully formed instances of graded type systems such as those of \BLL, \DlPCF or \DFuzz.\todo{refs!} {\bf Goal 2.2} focuses on qualitative examples and {\bf Goal 2.3} focuses on quantitative ones.
+
+\noindent{\bf Objective 3: Implementation\ \ } The third objective is the delivery of an implementation for the end of the three years project. This line of work also takes into account the studies relative to the whole type inference process which form {\bf Goal 3.1}. The implementation itself is the {\bf Goal 3.2}, we are aiming for a simplified functional language where the user only provide the graded structure and heuristics for the widenings. The objective also contains {\bf Goal 3.3} which is pure learning over later-phase and future complements such as the use of SMT-solvers.
+
+\paragraph{State of the art}
+
+\paragraph{Methodology}
+
+\paragraph{Novelty, timeliness and quality}
+
+\subsection{Clarity and quality of transfer of knowledge/training for the development of the researcher in light of the research objectives}
+
+\subsection{Quality of the supervision and the hosting arrangements}
+\paragraph{Outgoing Host Institution}
+\paragraph{Outgoing Phase Group}
+\paragraph{Outgoing Phase Supervisor}
+\paragraph{Return Host Institution}
+\paragraph{Return Host Group}
+\paragraph{Return Host Supervisor}
+
+
+\subsection{Capacity of the researcher to reach and re-enforce a position of professional maturity in research}
+
+
+
+\section{Impact}
+\subsection{Enhancing research- and innovation-related human resources, skills, and working conditions to realize the potential of individuals and to provide new career perspectives}
+
+\subsection{Effectiveness of the proposed measures for communication and results dissemination}
+
+
+
+\section{Implementation}
+\subsection{Overall coherence and effectiveness of the work plan, including appropriateness of the allocation of tasks and resources}
+
+
+
+
+
+\noindent
+%\hspace{-2em}
+\begin{ganttchart}[
+    vgrid= {*{11}{gray!50,dashed}, {red}}, 
+    inline,
+    description/.style={step=100pt}
+  ]{36}{0}
+\gantttitle{Year 1 (US)}{12}
+\gantttitle{Year 2 (US)}{12}
+\gantttitle{Year 3 (UK)}{12} \\
+\gantttitlelist{1,...,12}{1}
+\gantttitlelist{1,...,12}{1}
+\gantttitlelist{1,...,12}{1} \\
+\ganttgroup{Objective~1: Theory}{1}{36} \\
+\ganttbar[bar/.append style={fill=yellow!20}]{WP 1.1.2 (dependence)}{1}{12}
+\ganttbar[bar/.append style={fill=red!20}]{WP 1.2.2 (Order and Galois)}{13}{24}
+\ganttbar[bar/.append style={fill=yellow!30}]{WP 1.3.1 (Extensions)}{25}{36} \\
+\ganttbar[bar/.append style={fill=green!20}]{WP 1.1.1 (Lin. Cat.)}{1}{9}
+\ganttbar[bar/.append style={fill=cyan!20}]{WP 1.2.1 (AI)}{10}{16} 
+\ganttbar[bar/.append style={fill=green!20}]{WP 1.2.3 (Fixpoints)}{17}{27}  \\
+\ganttbar[bar/.append style={fill=yellow!30}]{WP 1.1.3 (Structures)}{1}{12} 
+\ganttbar[bar/.append style={fill=green!20}]{WP 1.3.2 (Int. Types)}{30}{36} \\
+%
+\ganttlink[link type= ru]{elem6}{elem3}
+\ganttlink{elem6}{elem8}
+\ganttlink[link type= uu]{elem4}{elem1}
+\ganttlink[link type= dd]{elem4}{elem7}
+\ganttlink[link type= uus]{elem5}{elem2}
+%
+\ganttgroup{Objective~2: Applications}{1}{36} \\
+\ganttbar[bar/.append style={fill=cyan!20}]{WP 2.1.1}{1}{9}
+\ganttbar[bar/.append style={fill=green!20}]{WP 2.1.2}{10}{16} \\
+\ganttbar[bar/.append style={fill=cyan!20}]{WP 2.2.1}{10}{18} 
+\ganttbar[bar/.append style={fill=red!20}]{WP 2.2.2}{19}{29} \\
+\ganttbar[bar/.append style={fill=cyan!20}]{WP 2.3.1}{19}{27} 
+\ganttbar[bar/.append style={fill=yellow!30}]{WP 2.3.2}{28}{36} \\
+%
+\ganttlink[link type= ru]{elem13}{elem8}
+%
+\ganttgroup{Objective~3: Implementation}{1}{36} \\
+\ganttbar[bar/.append style={fill=cyan!20}]{WP 3.1.1}{1}{9}
+\ganttbar[bar/.append style={fill=yellow!30}]{WP 3.1.2}{10}{24} 
+\ganttbar[bar/.append style={fill=red!20}]{WP 3.2}{25}{36} \\
+\ganttbar[bar/.append style={fill=cyan!20}]{WP 3.3.1}{17}{27} 
+\ganttbar[bar/.append style={fill=cyan!20}]{WP 3.3.2}{30}{36}
+%
+\ganttlink[link type=rus]{elem20}{elem19}
+
+\end{ganttchart}
+
+\begin{tabular}{c c c c}
+{\color{cyan!20}\rule{13pt}{13pt}}  learning &
+{\color{green!20}\rule{13pt}{13pt}}  low risk &
+{\color{yellow!30}\rule{13pt}{13pt}}  medium risk &
+{\color{red!20}\rule{13pt}{13pt}}  high risk
+\end{tabular}
+
+\medskip
+
+The project is divided in three parallel lines. The theory line focuses on developing the main theory behind our project. The Application line has for goal to understand related fields and to apply our result to those fields. The Implementation line is targeting an implementation of our language.
+
+\paragraph{Theory:}
+The main objective follows a sequential pattern.
+
+Goal~1.1 is supposed to be the basis for all the remaining work, it is thus scheduled the first year. Notice, moreover, that no other recherche-focused work package has been planned in parallel (except for the three last months that are assumed to be writing-focused). Goal~1.1 has three different work packages. Work package~1.1.1 is a package that focuses on grading non conventional models of linear logics in order to investigate natural extensions of graded type systems. It is a support package for packages~1.1.2 and~1.1.3, no important direct result are expected here. Work package~1.1.2 has for objective to specify the notion of dependence over grading structures. Work package~1.1.3 has for objective to distinguish a set of independent and interacting layers in the grading structure such as the monad-comonad separation. Early results on these two directions are quite promising and several different peoples are working in this area; thus expecting a reasonable formalization before the two year deadline (from now) can be considered medium risk.
+
+Goal~1.2 is at the heart of this project and treat the AI-related features of graded type systems. It is planned the second year, but is extended with preliminaries and little remaining work. Work package~1.2.1 is a learning-focused package that aiming at expanding the knowledge of the applicant regarding abstract interpretation. Work package~1.2.2 explores in more details the order that naturally arises from grading structures in order to link the last with domains. We expect this package to end with a notion of Galois relation between grading structures. Work package~1.2.3 is focusing on fixpoints, and in particular on the corresponding notion of widening. This package is considered low risk once the Galois connection has been properly set.
+
+Goal~1.3 consists in optional extensions of the theoretical work. In particular, Work package~1.3.1 is aimed at extending the theory for a $\lambda$-calculus to a full fledged language and Work package~1.3.2 is investigating the extension to intersection types.
+
+
+
+\paragraph{Application:}
+The application line follows a classic 2-2-2 pattern corresponding to the three applicative objectives, each separated into a learning phase (9 mouths) and an active phase (duration varying with the difficulty level). Notice that this objective is composed only of collaborative material.
+
+Goal~2.1 (work packages~2.1.1 and~2.2) targets the embedding of \BLL, \DlPCF and \DFuzz in our system. It is considered low risk as these languages are well established so that we roughly have to verify that we are taking into consideration each of its components. This objective is mainly aiming at supporting Goal~1.1 with real examples. Moreover, this goal has been scheduled just after one year spent in Focus team (Bologna) that created \DlPCF and in the UPen's programming language team that created \DFuzz.
+
+Goal~2.2 (work packages~2.2.1 and~2.2.2) targets the embedding of qualitative examples such as the control flow analyzes and\footnote{the intersection-free fragment of} the higher order model checking. This objective is classed high risk for several reasons: this will be the first new application and the relation between graded type systems and higher order model checking is not yet fully established. Its scheduling at middle position among applicative goals permit to manage the high risk by potentially extending the deadline. Moreover, the parallelizing of Goal~2.2 and the work package 1.2.3 is important as the fixpoint construction is fundamental in higher order model checking application. Finally, its scheduling permit a potential additional investigation over intersection type systems at the end of the project.
+
+Goal~2.3 (work packages~2.3.1 and~2.3.2) targets the embedding of quantitative examples such as probability or scheduling. This goal is classified medium risk despite their intrinsic difficulties since the applicant has some experience with these cases. Remark that this goal is planed in Birmingham with Dan Ghica that is an expert of the scheduling example (which we believe critical).
+
+
+\paragraph{Implementation:}~\\
+\todo[inline]{Not yet fixed \\
+  WP 3.1.1: learning over type inference\\
+  WP 3.1.2: working on type inference of graded type systems\\
+  WP 3.2: concrete implementation\\
+  WP 3.3.1: Learning over SMT solvers\\
+  WP 3.3.2: optional learning
+}
+
+
+\paragraph{Milestones:}
+
+
+
+
+
+
+\subsection{Appropriateness of the management structure and procedures, including quality management and risk management}
+
+\subsection{Appropriateness of the institutional environment (infrastructure)}
+
+\subsection{Competences, experience and complementarity of the participating organisations and institutional commitment}
+
+
+%Stop page count
+
+\section{CV of the Experienced Researcher}
+
+\section{Capacities of the Participating Organisations}
+
+\section{Ethical Aspects}
+
+\section{Letters of Commitment of Partner Organisations}
+
+
+\label{LastPage}
+\end{document}
+
+% LocalWords:  Idris
