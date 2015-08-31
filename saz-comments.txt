@@ -8,6 +8,10 @@
   - "graded type systems" will improve the state-of-the-art by including more information in the types
 
 
+F: I will add this for sure (the technical evaluation is performed by a 
+   specialist, but the final decision is taken by a non-specialist assembly
+
+
 * I like the idea of using contraints drawn from an algebraic structure.  This seems like doing some kind of "symbolic" abstract interpretation.
 
 * You should be sure to include a description of how you intend to evaluate the results of your work.  I would suggest:
@@ -19,8 +23,18 @@
   concrete example of the informativeness of a graded type (and
   perhaps compare it to a standard type for the same program).
 
+F: You are write, I was actually planing to add several concrete objectives depending of the remaining space.
+   As for the metatheory, I just forgot to add it, of course it is a must-have (especially since I have
+   specialized in denotational models until now). 
+
 
 * You should (probably briefly, depending on space) compare against potential related work.  You touch on dependently typed languages, but there are other kinds of refinment types, etc.
 
+F: I do admit that I felt my knowlege to be a bit lacking regarding other kind of type systems 
+   (except for intersection types and subtyping that I will extend in the state-of-the-art section). 
+   If you feel the need to add it, I will do a bit of bibliography.
+
 
 * There are numerous English errors that I'm happy to help correct in a future pass through the proposal.
+
+F: Thank you verry much. My english is, indeed, still lacking in numerous aspects...
