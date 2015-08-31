@@ -124,13 +124,15 @@
 
 \section{Summary}
 
-Functional programming languages often use complex type systems describing the behavior of the programs. These types are statically inferred before the compilation, acting as a first test for the correctness of the program. The advantage of type systems is to be inherantly compositional and to provide certificat. This means that the libraries comes with their typed that has already been computed and that is easily checkable. However, the verification power is low level and basically only verify that the composition of programs never fails due to incompatibility of format.
+Software is becoming increasingly complex and critical (autonomous vehicles, Internet, financial systems, etc.). Bugs, security vulnerabilities, or inefficient resource management are costly. Type systems are a scalable way to analyze software but lake of diversity regarding the considered properties. "Graded type systems" will improve the state-of-the-art by including more information in the types and by taking inspiration in abstract interpretation's community. Abstract interpretation is an other software-analyzing tool which analyze is extremely diverse, but which scalability is hindered by a lake of compositionality.
 
-More refined static analysis are generally performed by implementations of some abstract interpretation (AI) over the whole program. Those technics is very efficient but fail to be composable. This means that any new analysis has to be performed through the whole program, including libraries. Such a global analysis has two flaws: is often too resource consuming to be used on a regular basis, and the behaviors of common libraries are approximated while it could be interesting to manually optimize their interpretation once and for all.
+Functional programming languages often use complex type systems describing the behavior of the programs. These types are statically inferred before the compilation, acting as a first test for the correctness of the program. The advantage of type systems is to be inherently compositional and to provide certificate. This means that the libraries comes with their typed that has already been computed and that is easily checkable. However, the verification power is low level and basically only verify that the composition of programs never fails due to incompatibility of format.
 
-In parallel, several functional languages such as Coq, Agda, F* or Idris offer to join to program some proofs of correctness encoded in a dependent types. These dependant type systems are extremely expresive: not only can they cach up to any abstract interpretation analises but they can describe many more refined behaviours. Moreover, thes system are still compositional with certificates. However, the automatic inference is hardly never automatisable and the programer has to performe the proof himself (helped by the computer).
+More refined static analysis are generally performed by implementations of some abstract interpretation (AI) over the whole program. Those techniques is very efficient but fail to be composable. This means that any new analysis has to be performed through the whole program, including libraries. Such a global analysis has two flaws: is often too resource consuming to be used on a regular basis, and the behaviors of common libraries are approximated while it could be interesting to manually optimize their interpretation once and for all.
 
-Notice, moreover, that performing statical analysis under richelly typed languages:  advanced type systems offer several ways to encode semantical information inside the type (for readability or for safety). However, actual tools are basically forgetting the type of a program before running the analysis, loosing all this semantical information given by the programmer.
+In parallel, several functional languages such as Coq, Agda, F* or Idris offer to join to program some proofs of correctness encoded in a dependent types. These dependant type systems are extremely expresive: not only can they cach up to any abstract interpretation analises but they can describe many more refined behaviours. Moreover, these systems are still compositional and with certificates. However, the automatic inference is hardly never automatisable and the programer has to performe the proof himself (helped by the computer).
+
+Notice, also, that performing statical analysis under richelly typed languages should be advantageous:  advanced type systems offer several ways to encode semantical information inside the type (for readability or for safety). However, actual tools are basically forgetting the type of a program before running the analysis, loosing all this semantical information given by the programmer.
 %allowing dependant type is actually biased: dependant proofs are formally expliciting important invariants of the program that should be of use for automatically check any other properties. Without going that far, advanced type systems offer several ways to encode semantical information inside the type (for readability or for safety). However, actual tools are basically forgetting the type of a program before running the analysis, loosing all this semantical information given by the programmer.
 
 In this project, we propose to investigate a way to recover as much information as possible from the type inference which is one of the most complex kind of compositional and statical analysis. The ideal outcome would be a static analyzer for functional languages that can compete with existing ones while being completely compositional.
@@ -433,10 +435,12 @@ The last secondary milestone (from month 27 to month 29) is an other fuzzy trans
 
 \section{Ethical Aspects}
 
+There are no ethical sensitive issues associated with the subject of this proposal.
+
+
 \section{Letters of Commitment of Partner Organisations}
 
 
 \label{LastPage}
 \end{document}
 
-% LocalWords:  Idris
