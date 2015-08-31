@@ -132,7 +132,7 @@
     &  \cellcolor[gray]{0.8} {\bf Supervisor}
     & \cellcolor[gray]{0.8} \parbox[c]{4em}{\bf Role of partener organisation} \\
     \hline
-    \underline{Extra-european host} &&&&&&&\\
+    \underline{Outgoing host} &&&&&&&\\
     \hline
     \parbox[c]{6em}{University of Pennsylvania} 
     & UPenn 
@@ -141,7 +141,7 @@
     & \parbox[c]{7em}{Department of Computer and Information Science} 
     & Steve Zdancewic &  \\
     \hline
-    \underline{European host} &&&&&&&\\
+    \underline{Return host} &&&&&&&\\
     \hline
     \parbox[c]{6em}{University of Birmingham} 
     & Bham
@@ -177,10 +177,10 @@ In parallel, several functional languages such as Coq, Agda, F* or Idris offer t
 Notice, also, that performing statical analysis under richly typed languages should be advantageous:  advanced type systems offer several ways to encode semantical information inside the type (for readability or for safety). However, actual tools are basically forgetting the type of a program before running the analysis, losing all this semantical information given by the programmer.
 %outdated: allowing dependant type is actually biased: dependant proofs are formally expliciting important invariants of the program that should be of use for automatically check any other properties. Without going that far, advanced type systems offer several ways to encode semantical information inside the type (for readability or for safety). However, actual tools are basically forgetting the type of a program before running the analysis, loosing all this semantical information given by the programmer.
 
-In this project, we propose to investigate a way to recover as much information as possible from type inference which is one of the most complex kinds of compositional and static analysis. The ideal outcome would be a static analyser for functional languages that can compete with existing ones while being completely compositional.
+In this project, we propose to investigate a way to recover as much information as possible from type inference which is one of the most complex kinds of compositional and static analysis.  We do not intend to stamp out global analyses that are proven more efficient in the general cases. The ideal outcome would be a static analyser for functional languages that do not fall too far behind existing ones, while being more scalable.
 
 %drg: Are you sure? Global analysis and optimisation will always outperform compositional analysis. This is a mathematical unavoidable fact which has to do with the non-composability of Kan extensions. 
-%F: Sure, I do not delud myself on this point (even if I did not know the Kan-extention argument). But I belive that some classes of properties and with good notions of dependancy, type systems will not fall so far behind. 
+%F: Off course, I do not delud myself over this point (even if I did not know the Kan-extention argument). But I belive that for some classes of properties with good notions of dependancy, type systems will not fall so far behind. 
 
 For this purpose, we are focusing on emerging parameterised type systems. The parameters represent either qualitative statements or quantitative information over resources. Such type systems will be called \em{graded types systems}.
 
@@ -238,8 +238,7 @@ Outside from the hosting group (Programming Language group), collaborations are 
 Among the different research groups, the Programming Language group (Penn \href{http://www.cis.upenn.edu/~plclub/}{PL club})
 works on several specific topics in programming language theory and practice related to the
 research topic of this project. In particular, it studies advanced type systems including subtyping,
-object-oriented languages, ad hoc polymorphism, polytypic programming, and substructural type
-systems; language design and implementation; language-based security; metaprogramming;
+functional-oriented languages, ad hoc polymorphism, dependant types, polytypic programming, substructural type systems, language design and implementation, language-based security, metaprogramming, as well as
 foundations for concurrent, distributed, and mobile computing. 
 
 The PL club actually counts 3 professors and more than 10 doctoral students and post-doc researchers. \todo{out-dated?} The group stand as one of the worldwide top theoritical programing language groups with yearly publications in ACM POPL.
@@ -268,10 +267,13 @@ academic staff, six regular seminar series.
 
 
 \paragraph{Return Host Group}
-The Theory group includes a leading researcher in BLL-like type systems (Ghica), world-leading
-researchers in linear in dependent type systems (Krishnaswami, Escardo) and
-leading researchers into categorical semantics of programming languages (Levy, Reddy).
-
+In addition to the host supervisor, the Theory group includ numerous strong figures in fields that are particuliarly relevent for us: 
+\begin{itemize}
+\item linear and dependent type systems (Krishnaswami, Escardo),
+\item categorical semantics of programming languages  (Levy, Reddy),%with a strong understanding of monads
+\item domain theory (Ahim Jung, Steve Vickers and Martin Escardo),
+\item linear logic (Eike Ritter). %although he is more of a security researcher now. 
+\end{itemize}
 
 \paragraph{Return Host Supervisor}
 
