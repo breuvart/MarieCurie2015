@@ -13,7 +13,9 @@
 \usepackage{hyperref}
 \usepackage{fancyhdr}
 \usepackage{xspace}
+\usepackage{colortbl}
 \usepackage{enumitem}
+\usepackage{tabu}
 \setlength{\marginparwidth}{1.2cm}
 
 \usepackage[style=numeric,sorting=ydnt,defernumbers=true]{biblatex}
@@ -117,6 +119,46 @@
 \newpage
 
 \section*{List of Participants}
+
+{\tabulinesep=1.2mm
+  \begin{tabu}{| c | c | c | c | c | c | c | >{\columncolor[gray]{0}} c |}
+    \hline
+    \cellcolor[gray]{0.8} {\bf Participants} 
+    & \cellcolor[gray]{0.8} \parbox[c]{4em}{\bf Legal Entity Short Name}
+    & \cellcolor[gray]{0.8} \parbox[c]{1em}{\rotatebox[origin=c]{90}{\bf Academic}}\parbox[t]{1em}{\rotatebox[origin=c]{90}{(tick)}} 
+    & \cellcolor[gray]{0.8} \parbox[c]{1em}{\rotatebox[origin=c]{90}{\bf non-Academic}}\parbox[t]{1em}{\rotatebox[origin=c]{90}{(tick)}}
+    &  \cellcolor[gray]{0.8} {\bf Country} 
+    & \cellcolor[gray]{0.8} \parbox[c]{6em}{\bf Dept./ Division/ Laboratory}
+    &  \cellcolor[gray]{0.8} {\bf Supervisor}
+    & \cellcolor[gray]{0.8} \parbox[c]{4em}{\bf Role of partener organisation} \\
+    \hline
+    \underline{Extra-european host} &&&&&&&\\
+    \hline
+    \parbox[c]{6em}{University of Pennsylvania} 
+    & UPenn 
+    & \checkmark
+    && USA 
+    & \parbox[c]{7em}{Department of Computer and Information Science} 
+    & Steve Zdancewic &  \\
+    \hline
+    \underline{European host} &&&&&&&\\
+    \hline
+    \parbox[c]{6em}{University of Birmingham} 
+    & Bham
+    & \checkmark
+    && UK 
+    & \parbox[c]{7em}{School of Computer Science} 
+    & Dan R. Ghica &  \\
+    \hline
+  \end{tabu}
+}
+  
+
+
+\vspace{15cm}
+
+
+\todo[inline]{Sections 1,2,3 and 4 are limited to a total of 10 pages.}
 
 \newpage
 
