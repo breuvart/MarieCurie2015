@@ -15,6 +15,7 @@
 \usepackage{xspace}
 \usepackage{colortbl}
 \usepackage{enumitem}
+\usepackage{bussproofs}
 \usepackage{tabu}
 \setlength{\marginparwidth}{1.2cm}
 
@@ -24,6 +25,7 @@
 \newcommand\BLL{BLL\xspace}
 \newcommand\DlPCF{D$_\ell$PCF\xspace}
 \newcommand\DFuzz{DFuzz\xspace}
+\newcommand\rta{\rightarrow}
 
 
 \newganttlinktype{rd}{
@@ -130,7 +132,7 @@
     &  \cellcolor[gray]{0.8} {\bf Country} 
     & \cellcolor[gray]{0.8} \parbox[c]{6em}{\bf Dept./ Division/ Laboratory}
     &  \cellcolor[gray]{0.8} {\bf Supervisor}
-    & \cellcolor[gray]{0.8} \parbox[c]{4em}{\bf Role of partener organisation} \\
+    & \cellcolor[gray]{0.8} \parbox[c]{4em}{\bf Role of partner organization} \\
     \hline
     \underline{Outgoing host} &&&&&&&\\
     \hline
@@ -166,28 +168,28 @@
 
 \section{Summary}
 
-Software is becoming increasingly complex and critical (autonomous vehicles, the internet of things, financial systems, etc.). Bugs, security vulnerabilities, or inefficient resource management are costly. Type systems are a scalable way to analyze software but is hindered by a certain lack of expressiveness. ``Graded type systems'' can improve the state-of-the-art by including more information in the types and by incorporating some inspiration from abstract interpretation, another static analysis method which is extremely expressive, but as opposed to types lacks compositionality. Compositionality is important because it gives great support for scalability.
+Software is becoming increasingly complex and critical (autonomous vehicles, the internet of things, financial systems, etc.). Bugs, security vulnerabilities, or inefficient resource management are costly. {\em Type systems} are a scalable way to analyze software but is hindered by a certain lack of expressiveness. {\em Graded type systems} can improve the state-of-the-art by including more information in the types and by incorporating some inspiration from {\em abstract interpretation}, another {\em static analysis} method which is extremely expressive, but as opposed to types lacks compositionality. {\em Compositionality} is important because it gives great support for {\em scalability}.
 
 Functional programming languages often use complex type systems describing the behavior of the programs. These types are statically inferred before the compilation, acting as a first test for the correctness of the program. The advantage of type systems is their inherent compositionality. This means that libraries come with pre-computed types which are easily checkable. However, the verification power is low, restricted to the fact that composition of programs never fails due to incompatibility of format.
 
-More refined static, whole-program analysis can generally be performed by abstract interpretation (AI). Those techniques are very efficient but fail to compose. This means that any new analysis has to be performed through the whole program, including libraries. Such a global analysis has two flaws: it is often too resource consuming to be used on a regular basis, and the behaviours of common libraries are approximated while it could be interesting to manually optimize their interpretation once and for all.
+More refined static, whole-program analysis can generally be performed by abstract interpretation (AI). Those techniques are very efficient but fail to compose. This means that any new analysis has to be performed through the whole program, including libraries. Such a global analysis has two flaws: it is often too resource consuming to be used on a regular basis, and the behaviors of common libraries are approximated while it could be interesting to manually optimize their interpretation once and for all.
 
-In parallel, several functional languages such as Coq, Agda, F* or Idris offer to associate to programs certain proofs of correctness encoded in a dependent type system. These dependant type systems are extremely expressive: not only can they catch up to any abstract interpretation analyses but they can describe many more refined behaviours. Moreover, these systems are still compositional and can produce certificates. However, the automatic inference is hardly ever automatisable, so the programer has to produce the proofs mostly manually, even though the system can provide some help.
+In parallel, several functional languages such as \href{https://coq.inria.fr/}{Coq}, \href{http://wiki.portal.chalmers.se/agda/pmwiki.php}{Agda}, \href{https://www.fstar-lang.org/}{F*} or \href{http://www.idris-lang.org/}{Idris} offer to associate to programs certain proofs of correctness encoded in a dependent type system. These dependent type systems are extremely expressive: not only can they catch up to any abstract interpretation analyses but they can describe many more refined behaviors. Moreover, these systems are still compositional and can produce certificates. However, the automatic inference is hardly ever automatisable, so the programmer has to produce the proofs mostly manually, even though the system can provide some help.
 
 Notice, also, that performing statical analysis under richly typed languages should be advantageous:  advanced type systems offer several ways to encode semantical information inside the type (for readability or for safety). However, actual tools are basically forgetting the type of a program before running the analysis, losing all this semantical information given by the programmer.
 %outdated: allowing dependant type is actually biased: dependant proofs are formally expliciting important invariants of the program that should be of use for automatically check any other properties. Without going that far, advanced type systems offer several ways to encode semantical information inside the type (for readability or for safety). However, actual tools are basically forgetting the type of a program before running the analysis, loosing all this semantical information given by the programmer.
 
-In this project, we propose to investigate a way to recover as much information as possible from type inference which is one of the most complex kinds of compositional and static analysis.  We do not intend to stamp out global analyses that are proven more efficient in the general cases. The ideal outcome would be a static analyser for functional languages that do not fall too far behind existing ones, while being more scalable.
+In this project, we propose to investigate a way to recover as much information as possible from type inference which is one of the most complex kinds of compositional and static analysis.  We do not intend to stamp out global analyses that are proven more efficient in the general case. The expected outcome would be a static analyzer for functional languages that do not fall too far behind existing ones, while being more scalable and able to interact with other type constraints.
 
 %drg: Are you sure? Global analysis and optimisation will always outperform compositional analysis. This is a mathematical unavoidable fact which has to do with the non-composability of Kan extensions. 
 %F: Off course, I do not delud myself over this point (even if I did not know the Kan-extention argument). But I belive that for some classes of properties with good notions of dependancy, type systems will not fall so far behind. 
 
-For this purpose, we are focusing on emerging parameterised type systems. The parameters represent either qualitative statements or quantitative information over resources. Such type systems will be called \em{graded types systems}.
+For this purpose, we are focusing on emerging parameterized type systems. The parameters represent either qualitative statements or quantitative information over resources. Such type systems will be called {\em graded types systems}.
 
-A good point of comparison would be Hoare triples with preconditions and postconditions that need to match during composition, but some differences must be emphasised:
+A good point of comparison would be Hoare triples with preconditions and postconditions that need to match during composition, but some differences must be emphasized:
 \begin{itemize}
-\item A program is not only associated with a precondition and a postcondition corresponding to the parametrisation of the input and output types, but also with {\bf higher order conditions} parameterising every subtype (especially arrow types).
-\item All of these conditions are dependent over ``resource variables'' that are instantiated by unification during the composition (adding some new constraints). In particular, this allows any program to have a {\bf most general type} that characterises it; this most general type is computed once and can be reused each time the program is used in a larger project.
+\item A program is not only associated with a precondition and a post-condition corresponding to the parameterization of the input and output types, but also with {\bf higher order conditions} parameterizing every subtype (especially arrow types).
+\item All of these conditions are dependent over ``resource variables'' that are instantiated by unification during the composition (adding some new constraints). In particular, this allows any program to have a {\bf most general type} that characterizes it; this most general type is computed once and can be reused each time the program is used in a larger project.
 \item Constraints are not logical propositions but element of an {\bf algebraic structure}. These structures take shape of ordered monoids or ordered semirings. They are reminiscent of abstract interpretation domains.
 \end{itemize}
 
@@ -198,21 +200,80 @@ The SATIR project has three objectives. The {\bf first} (and main) {\bf objectiv
 
 The SATIR project intends to specify a particular subclass of abstract interpretation that we call graded type systems. Another way to state it is that SATIR project intends to reinject the whole power of abstract interpretation inside a type system by substituting the choice of the domain by the choice of some more refine algebraic structures called grading structures.
 
-\noindent{\bf Objective 1: Theory\ \ } Our main objective is to build up a comprehensive theory of graded types in its most general version. This objective can be split in three successive goals. {\bf Goal 1.1} consists in identifying the exact nature of grading structures. {\bf Goal 1.2} aims at transporting abstract interpretation principles to graded type systems. Finally, {\bf Goal 1.3} extends the result in several directions (generalisations to a full fledged language and to intersection type systems).
+\noindent{\bf Objective 1: Theory\ \ } Our main objective is to build up a comprehensive theory of graded types in its most general version. This objective can be split in three successive goals. {\bf Goal 1.1} consists in identifying the exact nature of grading structures. {\bf Goal 1.2} aims at transporting abstract interpretation principles to graded type systems. Finally, {\bf Goal 1.3} extends the result in several directions (generalizations to a full fledged language and to intersection type systems).
 
 \noindent{\bf Objective 2: Applications\ \ } The second objective pursues real applications. Indeed, we intend to spend an important time looking for existing related work and possible applications. The intent behind this objective is both to get some inspiration for the general case and also to disseminate our results. There are three phases, or goals, regarding the applications. {\bf Goal 2.1} aims at studying and internalizes actual fully formed instances of graded type systems such as those of \BLL, \DlPCF or \DFuzz.\footnote{See paragraph ``State of the art''} {\bf Goal 2.2} focuses on qualitative examples and {\bf Goal 2.3} focuses on quantitative ones.
 
-\noindent{\bf Objective 3: Implementation\ \ } The third objective is the delivery of an implementation for the end of the three years project. This line of work also takes into account the studies relative to the whole type inference process which form {\bf Goal 3.1}. The implementation itself is the {\bf Goal 3.2}, we are aiming for a simplified functional language where the user only provides the graded structure and heuristics for the widening. The objective also contains {\bf Goal 3.3} which is pure learning over later-phase and future complements such as the use of SMT-solvers.
+\noindent{\bf Objective 3: Implementation\ \ } The third objective is the delivery of an implementation for the end of the three years project. This line of work also takes into account the studies relative to the whole type inference process which form {\bf Goal 3.1}. The implementation itself is the {\bf Goal 3.2}, we are aiming for a simplified functional language where the user only provides the grading structure and heuristics for the widening. The objective also contains {\bf Goal 3.3} which is pure learning over later-phase and future complements such as the use of SMT-solvers.
 
 
 \paragraph{State of the art.}
 
-\begin{quote}
-  The most severe restrictions [of type systems] are on the considered properties.
-\end{quote}
+
+In 2001, Patrick Cousot was writing that ``the most severe restrictions [of type inferance] are on the considered properties''\footnote{Patrick Cousot. "Abstract interpretation based formal methods and future challenges (Electronique version)''. In LNCS 2001.}. The situation has now changed and type systems are able to treat a large variety of problems.
+
+Our first example was developed in late 90's in the security communoty: the use of types for information-flow analyses.\footnote{F. Nielson, H.R. Nielson and C. Hankin. ``Principles of program analysis'', 2015, In Springer} The idea consists in automatically infering the security level of a program. For example, a program $\lambda xy.x:{\color{red}l.}int\rta {\color{red}l.}int\rta {\color{red}l.}int$ use low security assertion and only take lowly secured input resulting in a lowly secured output. %Similarly, the program $r:ref(h.int), y:l.int\vdash r := !r+y : ()$ takes a reference to a highly secured integer $r$ and a lowly secured integer $y$, the reason it is safe is that the $r$ has only been updated. However, the program $r:ref(l.int), y: h.int\vdash r:= y; r:=0: ()$ seems correct but is not typable which is reasonable since an other thread may be able to read the lowly securized $r$ between the two instructions.
+The apparent weakness of this type system is that a program may have a lot of different types, in particular $\lambda xy.x$ can also have the types ${\color{red}h}.int\rta {\color{red}l.}int\rta {\color{red}h.}int$ or ${\color{red}l.}int\rta {\color{red}h.}int\rta {\color{red}l.}int$. To resolve this weakness, we remark that a lowly secured assuption can alway be assumed highly secured so that ${\color{red}l.}int\rta \tau$ is less precise than ${\color{red}h.}int\rta\tau$; moreover, one will never creat highly secured objects, so that we always assume that the result is lowly secured by default. With these assumptions, the main type\footnote{assuming that $y$ have to be an integer} of $\lambda xy.x$ is ${\color{red}l.}int\rta {\color{red}h.}int\rta int$.
+
+The above is (one of) the most basic instance of BLL-like type systems that we will develope later. Nowdays, information-flow analysis has been developed further along four axes:\footnote{A. Sabelfeld and A.C. Myers, ``Language-based information-flow security'', 2003, In IEEE journal on selected areas in communications} the expessivity, the concurency, the covert channel (modularity regarding the observation function of the attacker) and the security policy (allowing restricted declassifications). A special considetation will be applyed to strenghten graded type system towerd each of these directions (WP 1.3.1, WP 2.2.2 and WP 2.3.2).
+
+\todo[inline]{Flavien to Steve: I kinda remember that you had several papers in this area, maybe can you add a few sentences/references???}
+
+Linear types where introduced \footnote{independantly?} in different areas, and in particular for finer information-flow annalysis. It consists at insuring that some argument is used exactly once (or at most once), which is usefull for a more efficient compilation or for security. A more refined version of a linear types system is a multilinear type system where arguments are taged with an integer bounding there number of use. Even more interesting, this tag can be infered automatically via type inference. Bellow is an example of a type derivation in call by name:
+\begin{center}
+  \AxiomC{$x: {\color{red} 1.}\mathtt{int} \vdash \lambda f. f\ (f\ x) : {\color{red} 2.}({\color{red}1.}\mathtt{int}\rightarrow \mathtt{int})\rightarrow \mathtt{int}$}
+  \AxiomC{$x: {\color{red}1.}\mathtt{int} \vdash \lambda y.y+x : {\color{red}1.}\mathtt{int}\rightarrow \mathtt{int}$}
+  \RightLabel{{\footnotesize \color{red} 2*1+1=3}}
+  \BinaryInfC{$ x: {\color{red}3.}\mathtt{int} \vdash (\lambda f. f\ (f\ x))\ (\lambda y.y+x)\ : \mathtt{int}$}
+  \DisplayProof
+\end{center}
+The function $\lambda f. f\ (f\ x)$ has type ${\color{red} 2.}({\color{red}1.}\mathtt{int}\rightarrow \mathtt{int})\rightarrow \mathtt{int}$ meaning that it uses twice its argument $f$ which, itself is using its argument once. In the end, we know that the argument $x$ is used ${\color{red}3}$ times: once called by the function $\lambda f. f\ (f\ x)$ and twice called by the function $(\lambda y.y+x)$ (that is linear but used twice).
+
+\todo[inline]{I did not find certain references, for me it seems folklor but I am not sure...}
+
+One of the culminative point of information-flow security area is the language DFuzz\footnote{M. Gaboardi, A. Haeberlen, J. Hsu, A. Narayan and B.C. Pierce}. DFuzz was developed by the host team conjointly with the security team and a former Marie SKODOWSKA-CURIE fellow. This language extends over the covert channel direction by providing only differencially secured programs. Extending the idea of linearity to probabilities, programs of DFuzz are of type ${\color{red}r.}\sigma\rightarrow \tau$, where ${\color{red}r}\in \mathbb{R}^{\ge 0}$ is the expected value over the number of use of the argument. A novelty, here, is that the resource ${\color{red}r}$ can also depend over some ``resource variable'' coresponding, for example, to the number of loop in a recursion.
+
+
+
+\begin{itemize}
+\item BLL and  DlPCF
+
+\item BLL-based systems and Ghica/Smith
+
+\item (symbolic) refinement types
+\item Schopenhauer types \footnote{K. Hammond, M. Hofmann, S. Jost, H.-W. Loidl. ``Static determination of quantitative resource usage for higher-order programs''. In ACM SIGPLAN-SIGACT POPL’10.}
+\item petriceck et al
+
+\item graded monads
+
+\item HO model checking, mezzo and shape annalysis
+\end{itemize}
+
+
 
 
 \paragraph{Methodology.}
+
+\begin{itemize}
+\item Extension of BLL-like languages with monads and resource dependances,
+\item logics- and semantics-oriended,
+\item classification of graded algebras.
+\item more general types,
+\item operational semantics,
+\item categorical axiomatisation,
+\item concrete semantics,
+\item soundness/completeness
+\end{itemize}
+
+Targeted practical examples:
+\begin{itemize}
+\item information/control-flow
+\item HO model checking \footnote{Ong, Kobayashi, Mellies, Grelois}
+\item Sequentiality \footnote{Ghica, Smith}
+\item Probabilities \footnote{DFuzz}
+\item (complexity analysis) \footnote{BLL, DlPCF}
+\end{itemize}
+
 
 \paragraph{Novelty, timeliness and quality.}
 
@@ -220,16 +281,14 @@ The SATIR project intends to specify a particular subclass of abstract interpret
 
 \subsection{Quality of the supervision and the hosting arrangements}
 \paragraph{Outgoing Host Institution}
-The Department of Computer and Information Science of the University of Pennsylvania is part of the
-school of School of Engineering and Applied Science and is one of the birthplace of the modern
-computer. It was here that the ENIAC, the world's first electronic, large-scale, general-purpose
+The University of Pennsylvania, founded in 1740 by Benjamin Franklin, is a premier institution providing doctoral education in the United States, and has offered Ph.D. programs for over one hundred years. The University has pre-eminent scholars in all of its disciplines. 21 Nobel Prizes have been awarded to University of Pennsylvania faculty and alumni, and 6 Engineering faculty are in the National Academy of Engineering.
+
+Founded in 1972, the \href{http://www.cis.upenn.edu/index.php}{Department of Computer and Information Science} of the University of Pennsylvania is part of the school of School of Engineering and Applied Science and is one of the birthplace of the modern computer. It was here that the ENIAC, the world's first electronic, large-scale, general-purpose
 digital computer, was developed in 1946. Nowadays, the Department of Computer and
 Information Science combines energies of professors, researchers and doctoral students resulting
 from different research areas: Artificial Intelligence, Graphics, Information Management,
 Software Principles, Systems, Theory. The faculty of the Department of Computer and
-Information Science counts 78 members: 33 primary faculty, 19 secondary faculty, 5 lecturers, 16
-adjunct faculty, 5 emeritus professors. Moreover, the Department of Computer and Information
-Science counts more than 110 doctoral students.\todo{out-dated?}
+Information Science counts 30 primary faculty members as well as 500 undergradates, and 300 graduate students (Masters and PhD).
 
 Outside from the hosting group (Programming Language group), collaborations are expected with the ``Logic and Computation group'' (objective 1.1) and the ``Security and Privacy group'' (objectives 2.1 and 2.2) . Notice that these groups already share numeral active collaborations with the host group.\todo{Will I be part of Pen PL Club only?}
 
@@ -241,7 +300,7 @@ research topic of this project. In particular, it studies advanced type systems 
 functional-oriented languages, ad hoc polymorphism, dependant types, polytypic programming, substructural type systems, language design and implementation, language-based security, metaprogramming, as well as
 foundations for concurrent, distributed, and mobile computing. 
 
-The PL club actually counts 3 professors and more than 10 doctoral students and post-doc researchers. \todo{out-dated?} The group stand as one of the worldwide top theoritical programing language groups with yearly publications in ACM POPL.
+The PL club actually counts 3 professors (the supervisor, \href{http://www.cis.upenn.edu/~bcpierce/}{Benjamin C. Pierce} and  \href{http://www.cis.upenn.edu/~sweirich/}{Stephanie Weirich}) and more than 10 doctoral students and post-doc researchers. The group stand as one of the worldwide top theoritical programing language groups with yearly publications in ACM POPL.
 
 
 \paragraph{Outgoing Phase Supervisor}
@@ -250,11 +309,9 @@ The PL club actually counts 3 professors and more than 10 doctoral students and 
 Steve Zdancewic received the Ph.D. in Computer Science from Cornell University in 2002 and imediatly joint the University of Pennsylvania as Assistant Professor. Hi is now full profesor in the University of Pennsylvania since 2014. He is the author of more than fifty publications in international journals and conferences.
 
 
-
-
 \paragraph{Return Host Institution}
 %Outdated: The School of Computer Science at University of Birmingham has consistently been ranked in the Top 10 in UK league tables. In 2013 the School achieved an overall satisfaction rate of 95\% (NSS 2013) and The Guardian University Guide 2014 ranked University of Birmingham first place out of 128 in the UK league table for Computer Sciences and IT.
-The School of Computer Science of the University of Birmingham is
+The \href{http://www.cs.bham.ac.uk/}{School of Computer Science} of the University of Birmingham is
 internationally leading in several areas, including foundations of
 computer science and security. The foundations group includes 9
 Academic Staff and the security group 7. In REF 2014, 29\% of its
@@ -267,15 +324,10 @@ academic staff, six regular seminar series.
 
 
 \paragraph{Return Host Group}
-In addition to the host supervisor, the Theory group includ numerous strong figures in fields that are particuliarly relevent for us: 
-\begin{itemize}
-\item linear and dependent type systems (Krishnaswami, Escardo),
-\item categorical semantics of programming languages  (Levy, Reddy),%with a strong understanding of monads
-\item domain theory (Ahim Jung, Steve Vickers and Martin Escardo),
-\item linear logic (Eike Ritter). %although he is more of a security researcher now. 
-\end{itemize}
+In addition to the host supervisor, the \href{http://www.cs.bham.ac.uk/research/groupings/theory/}{Theory group} includ numerous strong figures in fields that are particuliarly relevent for us: Krishnaswami, Escardo are reconised specialists of linear and dependent type systems which graded type system is a refinement. Levy, Reddy are specialists of categorical semantics of programming languages and monads in particular. Jung, Vickers (and Escardo) are specialist of domain theory and can help with the formalisation of graded algebras. Finally,  Ritter is a former specialist in linear logic and is now working on security issues, as such he is a potential collaborator for Goals 2.2 and 2.3. 
 
-\paragraph{Return Host Supervisor}
+\paragraph{Return Host Supervisor (Scientist in charge)}
+\href{http://www.cs.bham.ac.uk/~drg/}{Dan Ghica} \todo[inline]{CV}
 
 
 \subsection{Capacity of the researcher to reach and re-enforce a position of professional maturity in research}
@@ -284,6 +336,8 @@ In addition to the host supervisor, the Theory group includ numerous strong figu
 
 \section{Impact}
 \subsection{Enhancing research- and innovation-related human resources, skills, and working conditions to realize the potential of individuals and to provide new career perspectives}
+
+
 
 \subsection{Effectiveness of the proposed measures for communication and results dissemination}
 
@@ -402,7 +456,19 @@ The last secondary milestone (from month 27 to month 29) is an other fuzzy trans
 
 \subsection{Appropriateness of the management structure and procedures, including quality management and risk management}
 
+
 \subsection{Appropriateness of the institutional environment (infrastructure)}
+UPen and Bhm both have much experience in helping international employees, many of whom supported by Marie Curie grants. Services are devoted to help foreign employees in finding living accommodation as well as dealing with administrative tasks due to mobility (contracts, taxes, etc.).\todo{true?} The fellow
+will therefore receive help not only on his arrival, but for the whole time of his stay, whenever necessary. This will allow him to attend to all administrative aspects of Marie Curie grants, such as preparation of deliverables in a best possible form.
+
+% Moreover, it is the mission of the International Staff Mobility Office, the Accommodation Office and the University’s mentor program to welcome fellows and offer help to successfully make the necessary practical arrangements. The International Staff Mobility Office addresses general and particular aspects of settling in, the Accommodation Office of the faculty specializes in finding suitable housing for long or short term stays, and many volunteers help new arrivals to orient themselves in their new environment and familiarize these with everyday details of academic and social life in Copenhagen through the University’s mentor program.
+The administrative management will further be supported by the EU Office\todo{correct name?} of Bhm – which has been involved in the management of several EU projects – which handles the financial and personnel aspects of national and international research projects including EU projects. The Faculty of Science was the recipient of ???\todo{find the number} Marie Curie Individual Fellowships and has great experience of project administration, leaving the fellow free to focus on scientific aspects of the project by lightening the administrative task load.
+
+Furthermore, office space and supplies are provided by UPen's department of computer sciences, while research supplies are available through research grants. Each student is guaranteed access to a computer and the Internet from laboratories and from his or her office as well as to systems administration support for computing and data storage. The University Library System holds more than 5,000,000 books and serial volumes in hard copy and digitalized format. Penn strongly encourages students to make use of available university equipment and resources.  Although space permits only this brief survey of SEAS and CIS equipment available to postdoctoral fellows, Penn has equipment and student equipment access policies which have been judged exemplary by its peers.
+
+Similarly, Bhm will furnish office space, access to scientific papers from all major publishers,
+books, and computing facilities.
+
 
 \subsection{Competences, experience and complementarity of the participating organisations and institutional commitment}
 
@@ -422,11 +488,24 @@ The last secondary milestone (from month 27 to month 29) is an other fuzzy trans
 \item[Website] \href{http://www.pps.univ-paris-diderot.fr/~breuvart/}{http://www.pps.univ-paris-diderot.fr/~breuvart/}
 \end{itemize}
 
+\noindent \rule{5.5em}{7pt} {\large \bf (Future) PhD Thesis} \nobreak
+\begin{itemize}[itemindent=0em,leftmargin=6em, labelsep=1em]
+\item[title]{Could the syntax be the chicken and the semantics the egg?}
+\item[subtitle]{From the old style H ∗ to the newborn quantitative coeffects.}
+\item[supervisors]{Antonio Bucciarelli and Michele Pagani}
+\item[defense]{Octobre 23th, 2015}
+\item[jury]{Antonio Bucciarelli (Paris Diderot), Pierre-Louis Curien (CNRS), Dan Ghica (University of Birmingham), Giulio Manzonetto (University Paris 13), Guy McCusker (rapporteur, University of Bath), Michele Pagani (Paris Diderot), Simona Ronchi della Rocca (president, University of Turin), Thomas Streicher (rapporteur, Technische Universitat Darmstadt)}
+\end{itemize}
+
+
+
+
 \noindent \rule{5.5em}{7pt} {\large \bf Position} \nobreak
 \begin{itemize}[itemindent=0em,leftmargin=6em, labelsep=1em]
 \entry{2015-2017:}{Iria post-doctoral positions,}{}{in Focus Team,}{Bologna, Italy}{}
 \entry{2012-2015:}{PhD candidate,}{with \href{http://www.pps.jussieu.fr/~buccia/}{Antonio Bucciarelli} and \href{http://www.pps.univ-paris-diderot.fr/~pagani/}{Michele Pagani},}{at PPS, University Paris Diderot,}{Paris, France}
 \entry{2012-2015:}{Teaching Assistant,}{}{at UFR Informatique, University Paris Diderot,}{Paris, France}
+\entry{2008-2012:}{Fonctionnaire stagiaire,}{}{at ENS Cachan,}{Cachan, France}
 \end{itemize}
 
 \noindent \rule{5.5em}{7pt} {\large \bf Other research experience}  \nobreak
