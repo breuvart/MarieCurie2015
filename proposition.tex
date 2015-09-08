@@ -142,6 +142,8 @@
     && USA 
     & \parbox[c]{7em}{Department of Computer and Information Science} 
     & Steve Zdancewic &  \\
+    & \includegraphics[angle=0,origin=c,scale=0.35]{UPenn.jpeg}
+    &&&&&  \includegraphics[angle=0,origin=c,scale=0.12]{stevez-fa15.jpg} & \\
     \hline
     \underline{Return host} &&&&&&&\\
     \hline
@@ -151,16 +153,12 @@
     && UK 
     & \parbox[c]{7em}{School of Computer Science} 
     & Dan R. Ghica &  \\
+    & \includegraphics[angle=0,origin=c,scale=0.3]{Bghm.jpeg}
+    &&&&&  \includegraphics[angle=0,origin=c,scale=0.5]{Ghica.jpeg} & \\
     \hline
   \end{tabu}
 }
   
-
-
-\vspace{2cm}
-
-
-\todo[inline]{Sections 1,2,3 and 4 are limited to a total of 10 pages.}
 
 \newpage
 
@@ -168,7 +166,7 @@
 
 \section{Summary}
 
-Types systems can be used to automatically check security properties of large programs. By developing the emerging conscept of graded (or BLL-like) systems and by seeking inspiration in abstract interpretation's communoty, we propose to extand the panel of properties checkable by type systems and to extend the analysis to quantitative outputs.
+Types systems can be used to automatically check security properties of large programs. By developing the emerging conscept of graded (or BLL-like) systems and by seeking inspiration in abstract interpretation's communoty, we propose to extend the panel of properties checkable by type systems and to extend the analysis to quantitative outputs.
 
 Software is becoming increasingly complex and critical (autonomous vehicles, the Internet of things, financial systems, etc.). Bugs, security vulnerabilities, or inefficient resource management are costly. {\em Type systems} are a scalable way to analyse software but is hindered by a certain lack of expressiveness. {\em Graded type systems} can improve the state-of-the-art by including more information in the types and by incorporating some inspiration from {\em abstract interpretation}, another {\em static analysis} method which is extremely expressive, but as opposed to types lacks compositionality. {\em Compositionality} is important because it gives great support for {\em scalability}.
 
@@ -235,7 +233,7 @@ One of the culminating point of information-flow security area is the language D
 
 DFuzz was also openly inspired by a fairly older work independent from information-flow type system: the logic BLL.\footnote{G-Y. Girard, A. Scedrov and P. Scott. ``Bounded linear logic: a modular approach to polynomial-time computability''. 1992. In Theoretical computer science.} BLL is a rich logic which, as a type system, insure the polynomial complexity of typed terms. The resulting language is then sufficiently expressive to allow the resolution of any polynomial problem. Basically, a BLL function type can be seen as  ${\color{red}p.}\sigma\rightarrow \tau$ where $p$ is a polynomial. But this naive description is far from enough to explain BLL's expressiveness.
 
-The real power of BLL is to allow a dependency over resources that DFuzz's notion of dependency, in the sens that resource variables are binded by the parameters. Indeed, functions terms are in fact of types ${\color{red}(\alpha<p).}\sigma\rightarrow \tau$ where $\alpha$ is a resource variable free in $\sigma$ and binded in ${\color{red}(\alpha<p).}\sigma$, the substitution is then performed along the type derivation (during dereliction phase mainly). If DFuzz's dependency is a ``resource polymorphism'', this dependency is a real ``dependant resource'' comparable to dependant types. This point is still not understood enough and the only other system using a real resource dependency is D$\ell$PCF\footnote{U.D.Lago and M. Gaboardi. ``Linear dependent types and relative completeness''. 2011. In Logic in Computer Science (LICS).} which is directly derived from BLL.
+The real power of BLL its strong notion of dependency (richer than in DFuzz), in the sens that resource variables are binded by the parameters. Indeed, functions terms are in fact of types ${\color{red}(\alpha<p).}\sigma\rightarrow \tau$ where $\alpha$ is a resource variable free in $\sigma$ and binded in ${\color{red}(\alpha<p).}\sigma$, the substitution is then performed along the type derivation (during dereliction phase mainly). If DFuzz's dependency is a ``resource polymorphism'', this dependency is a real ``dependant resource'' comparable to dependant types. This point is still not understood enough and the only other system using a real resource dependency is D$\ell$PCF\footnote{U.D.Lago and M. Gaboardi. ``Linear dependent types and relative completeness''. 2011. In Logic in Computer Science (LICS).} which is directly derived from BLL.
 
 Inspired by all these previous languages, two groups of peoples\footnote{A. Brunel, M. Gaboardi, D. Mazza and S. Zdancewic. ``A core quantitative coeffect calculus''. 2014. In ESOP.}\footnote{D.R. Ghica and A.I. Smith. ``Bounded linear types in a resource semiring''. 2014. In ESOP.} (which both host supervisors are part of) did independantly generalised them into a sole system parametrised by an (ordered) semiring $\sS$: The BLL-like systems or the graded comonad.  This system is obtain by a parametrisation (or grading) of the exponential comonad of the linear logic. In particular, the sum of the semiring corresponds exactly to the contraction and the multiplication correspond exactly to the digging. 
 
@@ -286,8 +284,6 @@ There are three phases, or goals, regarding the applications. {\bf Goal 2.1} aim
 
 This line of work also takes into account the studies relative to the whole type inference process which form {\bf Goal 3.1}. The implementation itself is the {\bf Goal 3.2}, we are aiming for a simplified functional language where the user only provides the grading structure and heuristics for the widening. The objective also contains {\bf Goal 3.3} which is pure learning over later-phase and future complements such as the use of SMT-solvers.
 
-
-
 %\paragraph{Novelty, timeliness and quality.}
 %Althought resulting from a natural convergence of existing works, this project differ from its predecessors by its ambition to be ``vertically modular'' and to reconcile type theory and abstract interpretation. The later is especially important as both tools are actually displayed on the same programs to trace the same kind of properties (albeit at different levels) without sharing any informations...
 %
@@ -334,7 +330,8 @@ The PL club actually counts 3 professors (the supervisor, \href{http://www.cis.u
 \paragraph{Outgoing Phase Supervisor}
 \href{http://www.cis.upenn.edu/~stevez/}{Steve Zdancewic} is reconised as an international expert of functional programing languages and security. His research interests lie in theoretical computer science, programming language design and implementation (Coq verification of LLVM program transformations and randomized algorithms, type-directed program synthesis, linear types and GUI programming), langage enforcing verification (language-based enforcement of information-flow policies, low-level code memory safety, understanding dynamic security policies, and authorization logic) as well as secure concurrent and distributed computing, functional programming languages, type theory, linear and modal logics, theorem proving and mechanized metatheory. 
 
-Steve Zdancewic received the Ph.D. in Computer Science from Cornell University in 2002 and imediatly joint the University of Pennsylvania as Assistant Professor. Hi is now full profesor in the University of Pennsylvania since 2014. He is the author of more than fifty publications in international journals and conferences.
+Steve Zdancewic %received the Ph.D. in Computer Science from Cornell University in 2002 and imediatly joint the University of Pennsylvania as 
+is Full Professor with plenty of supervising experience (3 post-doc and 9 PhD students). He is the author of more than fifty publications in international journals and conferences.
 
 
 \paragraph{Return Host Institution}
@@ -393,7 +390,7 @@ The fellow plans participe in at least 9 conference events, one visite and 3 inv
 The dissemination of the results of this project will be assured by submitting them to the most important international conferences of the domain, such as POPL, ESOP, FoSSaCS, CC, LICS, CSL, etc. (which, as is customary in theoretical computer science, have selective program committees), as well as the main scientific journals of the field. Special attention will also be given to presenting the results (perhaps in their preliminary form) to specialized workshops without proceedings in order to benefit from interaction with the communities relevant for the development of the project. Also, technical reports will be systematically made available on publicly and freely accessible repositories (such as ArXiv). Finaly, the resulting implementation will be maid available for everyone under a open-source licence.
 
 \paragraph{Exploitation of results and intellectual property.} 
-The fellow strongly believes in open-source softwar and open access online journals/proceedings; he will always favor this method of publishing.
+The fellow strongly believes in open-source softwar and the open access of online journals/proceedings; he will always favor this method of publishing in accordance with EU’s policies. 
 
 
 
@@ -464,13 +461,15 @@ The fellow strongly believes in open-source softwar and open access online journ
 
 The project is divided in three parallel lines. The theory line focuses on developing the main theory behind our project. The Application line has for goal to understand related fields and to apply our result to those fields. The Implementation line is targeting an implementation of our language.
 
+It may be unusual to consider so much simultaneous line, but these are interdependant objectives which varies in nature. Such a separation of tasks is usual in the domains where maturation of ideas is fundamental: it is often more efficient to stop working over a subject for a few days in order to get a different point of view.
+
 \paragraph{Theory:}
 The main objective follows a sequential pattern.
 
 Goal~1.1 is supposed to be the basis for all the remaining work, it is thus scheduled the first year. Notice, moreover, that no other research-focused work package has been planned in parallel (except for the three last months that are assumed to be in final phase). %drg: strange to allocate time for write-up this is not a phd thesis! %F: I change it to final phase: I just wanted to express that those WP will be less active at that time.
 Among Goal~1.1's work packages, WP~1.1.1 has a support role regarding packages~1.1.2 and~1.1.3, and no important direct result are expected here. Work package~1.1.2 and Work package~1.1.3 should carry important result that will be presented in the form of two papers. Early results on these two directions are quite promising and several researchers are active in this area; thus expecting a reasonable formalisation before the two year deadline\footnote{Recall that the fellow intend to begin the fellowship in October 2016.} can be considered medium risk. 
 
-Goal~1.2 is at the heart of this project and investigates the AI-related features of graded type systems. It is planned the second year, but is extended with preliminaries and some remaining work. We expect WP~1.2.2 to end with the publication of a notion of Galois relation between grading structures; probably the dangerous package, if needed, the study is allowed to overrun its alocated time by delaying WP 1.3.1 which is more modular. Work package~1.2.3 is focusing on fixpoints, and in particular on the corresponding notion of widening which should be the object of an article; this package is considered low risk once the Galois connection has been properly set.
+Goal~1.2 is at the heart of this project and investigates the AI-related features of graded type systems. It is planned the second year, but is extended with preliminaries and some remaining work. We expect WP~1.2.2 to end with the publication of a notion of Galois relation between grading structures. Work package~1.2.3 is focusing on fixpoints, and in particular on the corresponding notion of widening which should be the object of an article; this package is considered low risk once the Galois connection has been properly set.
 
 Goal~1.3 consists in optional extensions of the theoretical work.
 
@@ -510,6 +509,25 @@ The last secondary milestone (from month 27 to month 29) is an other fuzzy trans
 
 
 \subsection{Appropriateness of the management structure and procedures, including quality management and risk management}
+
+\paragraph{Resources.} The M.S.-C. fellowships contribute 800e/month for “research, training and networking costs”, yielding a total budget of 28.8ke. The theoretical nature of the project gives only 3 types of expenses:
+\begin{itemize}[itemindent=-2em,leftmargin=2em, labelsep=0.5em, itemsep=0em]
+\item[]\underline{Traveling (17k€)}: attendance to an international conference/workshop is estimated at 1.7ke (domestic/overseas average). We plan to attend 10 such events (of which at least 6 for presenting papers).
+\item[]\underline{Invitations (9k€)}: the cost of a 2-week invitation is estimated at 2.5ke (from overseas) or 2ke (domestic). We plan to get 4 invitations: 2 overseas (the two oposit-phase supervisors) and 2 domestics.
+\item[]\underline{Visit (2.5€)}: an amount of 2.5€ will be reserved for a 3-weeks domestic visit which goal is the deepening of the fellow's knowlege on abstract interpretation.
+\end{itemize}
+The total is 28.5ke, allowing some slack for extra expenses.
+
+\paragraph{Risks.} We will now describe, for each medium and high risk work package, of how these risks will be handled.:
+\begin{itemize}[itemindent=-2em,leftmargin=2em, labelsep=0.5em, itemsep=0em]
+\item[] \underline{WP~1.1.2 and WP~1.1.3:} Getting the more general system with full certenty is the objective, but reaching a non optimal one is sufficient for continuing the process (and we already have a weak system).
+\item[] \underline{WP~1.2.2:} Probably the more dangerous and important package, if needed, the study is allowed to overrun its alocated time by delaying WP~1.3.1 which is more modular.
+\item[] \underline{WP~1.3.1:} This package is very modular, the only objective is to implement as much extension as possible considering the other constraints.
+\item[] \underline{WP~2.2.2:} The difficulties goes with the integration of the recherches over the HO model checking which is a minor objective that we can skip if needed.
+\item[] \underline{WP 2.3.2:} It may be that the time allowed for this package is not sufficient; in this case, the fellow simply intend to continue recherching on this point after the end of the grant as a side activity.
+\item[] \underline{WP 3.1.2:} While not so risky (there is a lot of allowed time), this objective is necessary to continue to WP~2.2. In case of issues, the presence at UPenn of numerous hyperspecialist in type inference will deffinetly be of of help, and is this help is not sufficient, the delaying WP~3.2 will be necessary.
+\item[] \underline{WP~3.2:} The fellow intend to go as far as possible in the implementation, but if time is laking, then only a fragment of the system will be implemented.
+\end{itemize}
 
 
 \subsection{Appropriateness of the institutional environment (infrastructure)}
@@ -581,18 +599,99 @@ books, and computing facilities.
 \noindent \rule{5.5em}{7pt} {\large \bf Publications}  \nobreak \\
 \noindent \rule{5.5em}{1pt} {\bf Conference papers}  \nobreak
 \begin{itemize}[itemindent=0em,leftmargin=6em, labelsep=1em]
-\entry{CSL'15:}{Breuvart Flavien and Pagani Michele,}{}{Berlin, Germany}\\ ``Modelling Coeffects in the Relational Semantics of Linear Logic''
-\entry{CSL-LICS'14}{Breuvart Flavien}{}{Vienna, Austria}\\ ``On the characterization of models of $\mathcal{H}^*$''
-\entry{TLCA'13}{Breuvart Flavien}{}{Eindhoven, Netherlands}\\ ``The resource lambda calculus is short-sighted in its relational model''
+\entry{CSL'15:}{Breuvart Flavien and Pagani Michele,}{}{Berlin, Germany}\\ ``Modelling Coeffects in the Relational Semantics of Linear Logic''\vspace{-0.5em}
+\begin{quote}
+  We give a denotational model of graded comonadinc logics (equivalently BLL-like logics or B$_\sS$LL) in the relational category (Rel) of sets and relations. These logics are parametrised by a given semiring $\sS$, but we parameterize the interpretation in order to model each of the logics. This is possible because of the notion of multiplicity semi-ring, introduced in [3] and  allowing a great variety of exponential comonads in Rel. The interpretation of a particular typing system corresponds then to give a suitable notion of stratification of the exponential comonad associated with the semi-ring parametrising the exponential modality.
+\end{quote}
+\entry{CSL-LICS'14}{Breuvart Flavien}{}{Vienna, Austria}\\ ``On the characterization of models of $\mathcal{H}^*$''\vspace{-0.5em}
+\begin{quote}
+  We give a characterization, with respect to a large class of denotational models of untyped $\lambda$-calculus, of those models that are fully abstract for head-normalization, {\em i.e.}, whose equational theory is $\mathcal{H}^*$. An extensional K-model $D$ is fully abstract if and only if it is hyperimmune, {\em i.e.}, non-well founded chains of elements of $D$ cannot be captured by any recursive function.
+
+  The proof is based on a combination of arguments overs two main tools: the B\"ohm trees and the $\lambda$-calculi with tests. The B\"ohm trees constitute a wildly known construction that describe precisely the infinite beaviour of terms (in head reduction). Howeover, $\lambda$-calculi with tests are new structures; they are syntactic extensions of the $\lambda$-calculus with operators defining compact elements of the given models. Since the model appears in the syntax, we are able to perform inductions (and
+co-inductions) directly on the reduction steps of actual terms.
+\end{quote}
+\entry{TLCA'13}{Breuvart Flavien}{}{Eindhoven, Netherlands}\\ ``The resource lambda calculus is short-sighted in its relational model''\vspace{-0.5em}
+\begin{quote}
+  Relational semantics is one of the simplest and categorically
+  most natural semantics of Linear Logic. The co-Kleisli category MRel
+  associated with its multiset exponential comonad contains a fully
+  abstract model of the untyped $\lambda$-calculus. That particular object of MRel
+  is also a model of the resource λ-calculus, deriving from Ehrhard and
+  Regnier’s differential extension of Linear Logic and related to Boudol’s
+  $\lambda$-calculus with multiplicities. Bucciarelli et al. conjectured that model
+  to be fully-abstract also for the resource $\lambda$-calculus. We give a counter-example to the conjecture. As a by-product we achieve a context lemma for the resource λ-calculus.
+\end{quote}
 \end{itemize}
-\noindent \rule{5.5em}{1pt} {\bf Submited}  \nobreak
+\noindent \rule{5.5em}{1pt} {\bf Submitted}  \nobreak
 \begin{itemize}[itemindent=0em,leftmargin=6em, labelsep=1em]
-\entry{2016}{Breuvart Flavien, Marco Gaboardi, Shin-ya Katsumata and Dominic Orchard,}{}{}\\"Combining effects and coeffects''
-\entry{2016}{Breuvart Flavien,}{long version}{}\\"On the characterization of models of $\mathcal{H}^*$''
+\entry{2016}{Breuvart Flavien, Marco Gaboardi, Shin-ya Katsumata and Dominic Orchard,}{}{}\\"Combining effects and coeffects''\vspace{-0.5em}
+\begin{quote}
+  Effects and coeffects are two general, complementary classes of
+  program behaviour. They roughly correspond to computations
+  which change the execution context (effect) versus computations
+  which make demands of the context (coeffect).
+
+  Effects include input-output, state, partiality, non-determinism,
+  and exceptions. These tend to be amenable to a denotational model
+  in terms of monads. Monads can be graded by using an explicit
+  representation of effects as objects of a monoid. Effect-graded monads
+  model effect systems, where types provide information about the
+  side effects of a program. Coeffects on the other hand correspond
+  to denotational models using comonads, which capture what a program 
+  requires from its execution context. This includes demands
+  for particular resources, access to variables, and data requirements.
+  Comonads can be naturally graded by using an explicit represen-
+  tation of coeffects as objects of a semiring. Similarly to effect systems,
+  coeffect-graded comonads model coeffect systems that can be
+  used to express the requirements of a program using types.
+
+  We introduce a new general calculus which combines both coeffects
+  and effects into a effect-coeffect system. This can describe
+  both changes and requirements that a program has on its evaluation
+  context, as well as interactions between these effectful and coeffectful
+  features of computation. The effect-coeffect system has a
+  denotational model in terms of effect-graded monads and coeffect-graded
+  comonads where the interaction is expressed by a graded
+  distributivity law. This graded semantics unifies the syntactic type
+  theory with the denotational semantics. We show that our calculus
+  can be instantiated to describe in a natural way various different
+  kinds of interaction between a program and its evaluation context.
+\end{quote}
+\entry{2016}{Breuvart Flavien,}{long version}{}\\"On the characterization of models of $\mathcal{H}^*$''\vspace{-0.5em}
+\begin{quote}
+  Long (50 p.) and revisited version of CSL-LICS'14. The original proof from CSL-LICS'14 has been duplicated into a semantic and a syntactic proof of the same theorem. This duplication is applied in order to emphisised the unformal duality between B\"ohm trees and the $\lambda$-calculi with tests: The B\"ohm trees forms a syntactic model that we use in the semantic proof and the $\lambda$-calculi with tests are semantic calculi that we use in the syntactic proof.
+\end{quote}
 \end{itemize}
 \noindent \rule{5.5em}{1pt} {\bf non peer-reviewed}  \nobreak
 \begin{itemize}[itemindent=0em,leftmargin=6em, labelsep=1em]
-\entry{2012}{Breuvart Flavien,}{arXiv preprint arXiv:1205.4691,}{}\\ ``On the discriminating power of tests in resource lambda-calculus``
+\entry{arXiv'12}{Breuvart Flavien,}{arXiv preprint arXiv:1205.4691,}{}\\ ``On the discriminating power of tests in resource lambda-calculus``\vspace{-0.5em}
+\begin{quote}
+  Since its discovery, differential linear logic (DLL) inspired numerous
+  domains. In denotational semantics, categorical models of DLL are now
+  commune, and the simplest one is Rel, the category of sets and relations.
+  In proof theory this naturally gave birth to differential proof nets that are
+  full and complete for DLL. In turn, these tools can naturally be translated
+  to their intuitionistic counterpart. By taking the co-Kleisly category 
+  associated to the ! comonad, Rel becomes MRel, a model of the $\lambda$-calculus that
+  contains a notion of differentiation. Proof nets can be used naturally to
+  extend the $\lambda$-calculus into the lambda calculus with resources, a calculus
+  that contains notions of linearity and differentiations. Of course MRel is
+  a model of the $\lambda$-calculus with resources, and it has been proved adequate,
+  but is it fully abstract?
+  
+  That was a strong conjecture of Bucciarelli, Carraro, Ehrhard and
+  Manzonetto. However, in this paper we exhibit a counter-example.
+  Moreover, to give more intuition on the essence of the counter-example
+  and to look for more generality, we will use an extension of the resource
+  $\lambda$-calculus also introduced by Bucciarelli et al for which $\mathcal{M}_\infty$ is fully
+  abstract, the tests.
+\end{quote}
+\end{itemize}
+\noindent \rule{5.5em}{1pt} {\bf In preparation}  \nobreak
+\begin{itemize}[itemindent=0em,leftmargin=6em, labelsep=1em]
+\entry{}{Breuvart Flavien,}{}{}\\ ``A sufficient condition for the appoximability of filter models''
+\entry{}{Breuvart Flavien,}{}{}\\ ``Classifying linear categories by their internal semiring''
+\entry{}{Breuvart Flavien, Pierre Marie Pedrot}{}{}\\ ``A type system to infer sequenciality''
 \end{itemize}
 
 \noindent \rule{5.5em}{7pt} {\large \bf Responsibilities}  \nobreak
