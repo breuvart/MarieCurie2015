@@ -168,6 +168,8 @@
 
 \section{Summary}
 
+Types systems can be used to automatically check security properties of large programs. By developing the emerging conscept of graded (or BLL-like) systems and by seeking inspiration in abstract interpretation's communoty, we propose to extand the panel of properties checkable by type systems and to extend the analysis to quantitative outputs.
+
 Software is becoming increasingly complex and critical (autonomous vehicles, the Internet of things, financial systems, etc.). Bugs, security vulnerabilities, or inefficient resource management are costly. {\em Type systems} are a scalable way to analyse software but is hindered by a certain lack of expressiveness. {\em Graded type systems} can improve the state-of-the-art by including more information in the types and by incorporating some inspiration from {\em abstract interpretation}, another {\em static analysis} method which is extremely expressive, but as opposed to types lacks compositionality. {\em Compositionality} is important because it gives great support for {\em scalability}.
 
 Functional programming languages often use complex type systems describing the behaviour of the programs. These types are statically inferred before the compilation, acting as a first test for the correctness of the program. The advantage of type systems is their inherent compositionality. This means that libraries come with pre-computed types which are easily checkable. However, the verification power is low, restricted to the fact that composition of programs never fails due to incompatibility of format.
@@ -179,7 +181,8 @@ In parallel, several functional languages such as \href{https://coq.inria.fr/}{C
 Notice, also, that performing statical analysis under richly typed languages should be advantageous:  advanced type systems offer several ways to encode semantic information inside the type (for readability or for safety). However, actual tools are basically forgetting the type of a program before running the analysis, losing all this semantic information given by the programmer.
 %outdated: allowing dependant type is actually biased: dependant proofs are formally expliciting important invariants of the program that should be of use for automatically check any other properties. Without going that far, advanced type systems offer several ways to encode semantical information inside the type (for readability or for safety). However, actual tools are basically forgetting the type of a program before running the analysis, loosing all this semantical information given by the programmer.
 
-In this project, we propose to investigate a way to recover as much information as possible from type inference which is one of the most complex kinds of compositional and static analysis.  We do not intend to stamp out global analyses that are proven more efficient in the general case. The expected outcome would be a static analyser for functional languages that do not fall too far behind existing ones, while being more scalable and able to interact with other type constraints.
+In this project, we propose to investigate a way to recover as much information as possible from type inference which is one of the most complex kinds of compositional and static analysis. %We do not intend to stamp out global analyses that are proven more efficient in the general case. 
+Sacrifying effectiveness of a lobal analysis for efficiency of a local one, we can reasonably expect to get static analyser for functional languages that do not fall too far behind existing ones, while being more scalable and able to interact with other type constraints.
 
 %drg: Are you sure? Global analysis and optimisation will always outperform compositional analysis. This is a mathematical unavoidable fact which has to do with the non-composability of Kan extensions. 
 %F: Off course, I do not delud myself over this point (even if I did not know the Kan-extention argument). But I belive that for some classes of properties with good notions of dependancy, type systems will not fall so far behind. 
@@ -293,23 +296,13 @@ This line of work also takes into account the studies relative to the whole type
 %\todo[inline]{In construction}
 
 \subsection{Clarity and quality of transfer of knowledge/training for the development of the researcher in light of the research objectives}
-The present research proposal is built with a training-through-research logic in mind. The fellow currently lacks the
-skills needed to achieve the proposed objectives. Aditionally, to the schedulling is incorporated several important learning WP which 
-correspond to the hosts' specialities (excepts for the abstract interpretation which will be the object of a separated visite).
+The present research proposal is built with a training-through-research logic in mind. Additionally, to the schedulling is incorporated several important learning WP which  correspond to the hosts' specialities (excepts for the abstract interpretation which will be the object of a separated visite).
 
-At UPenn, the fellow will have the possibility to
-interact with experts in programming languages design and security (including type systems design, type inference, formal methods, 
-distributed computing, databases security). These are all essential topics for the evolution of the fellow’s research plan. 
-During the outgoing phase, which will consist primarily in scientific cooperation with researchers at UPenn and in US, the
-fellow will enlarge its restricted view of worldwide research in computer sciences. In particular, he will be in contact with
-researchers in topics he has interest but no expertise in such as architecture and embedded systems.
+During the outgoing phase, which will consist primarily in scientific cooperation with researchers at UPenn and in US, the fellow will enlarge its restricted view of worldwide research in computer sciences. The collaboration with the outgoing supervisor, in particular, will offer its expertise in the design of types systems and information-flow analyses (one of the main aplication of the project) while receving the experience of the fellow in linear logic, graded systems and denotational semantics which he showed an interest for during the last years. A UPenn, the fellow will more generally have the possibility to interact with experts of essential topics for the evolution of the fellow’s research plan such as programming languages design and security (including type systems design, type inference, formal methods, distributed computing, databases security); but also with experts in topics he has interest but no expertise in such as architecture and embedded systems.
 
-Bham is  one of the birthplace of graded comonads which the project is based on. There, the fellow will interact with specialists 
-in programing language and domain theories.
+During the outgoing phase, the fellow will be able to work directly with two of the pioneers of graded comonads which the project is based on: the advisor and one of its post-doc. In addition to being expert on graded systems, they are applying this expertise for hardware implementations (by recording sequenciallity or cache policy). Concurrently, the fellow will provide an expertise (linear logic categorical and denotational semantics) as well as his aquired experience from the outgoing phase. Additionally, the fellow will interact with specialists in programing language and domain theories.
 
-Concurrently, the fellow’s background skills (linear-logic, categorical and denotational semantics, rewriting) 
-will reinforce and/or complement the expertise of the host teams at UPenn and Bham, which makes the project
-interesting also for the hosting organization.
+%Concurrently, the fellow’s background skills (linear-logic, categorical and denotational semantics, rewriting) will reinforce and/or complement the expertise of the host teams at UPenn and Bham, which makes the project interesting also for the hosting organization.
 
 
 
@@ -367,7 +360,7 @@ In addition to the host supervisor, the \href{http://www.cs.bham.ac.uk/research/
 
 \subsection{Capacity of the researcher to reach and re-enforce a position of professional maturity in research}
 
-The fellow is a recognized international expert in the area of denotational models for linear logic and lambda calculus that recieved the Kleene Award for the best student paper at LICS 2014. His work of the full abstraction of the pure $\lambda$-calculus is a culmination of a line of investigation which started about 40 years ago. At the same time, he was an important actor in the development of graded comonoadic systems (of BLL-like systems). He was granted a postdoctoral fellowship by the French institution Inria to spend two years in the team Focus (Bologna, Italy) in order to develope further his quantitative aproch of denotational semantics.
+The fellow is a recognized international expert in the area of denotational models for linear logic and lambda calculus. In that concern, he recieved the Kleene Award for the best student paper at LICS 2014. His work of the full abstraction of the pure $\lambda$-calculus is a culmination of a line of investigation which started about 40 years ago. At the same time, he was an important actor in the development of graded comonoadic systems (of BLL-like systems). He was granted a postdoctoral fellowship by the French institution Inria to spend two years in the team Focus (Bologna, Italy) in order to develope further his quantitative aproch of denotational semantics.
 
 In all the majority of his publications, the fellow has been the sole author, seldom working directly with his advisors, this show his independence and maturity as well as his capacity to set his own research objectives and attain them. Nonetheless, its capacity to work in teamwork in enhanced by a major article with three colaborators from differents countries.\footnote{F. Breuvart, M. Gaboardi, S-Y. Katsumata and D. Orchard. ``Combining effects and coeffects''. 2016.} These publications are yet only conference paper which are the norm in the computer science area; nonetheless, a long version (50 pages) for his main paper has been submited.
 
@@ -385,12 +378,7 @@ The realization of this project will foster this vision through training and col
 
 Career-wise, the fellow’s plan is to use its aquired experience to get a lecturer or assistant professor position in UK or in France. The Marie Curie fellowship will also provide the fellow with working experience in a foreign country, an important if not essential asset for most academic positions.  Lastly, his research experience’s enrichment will allow the fellow to prepare a habilitation thesis within the 5 years subsequent to the end of the fellowship.
 
-part of the return phase to write his habilitation thesis, in which he will collect the results generated by the fellowship. The habilitation is a necessary degree to apply to Full Professor positions in french Universities and a de facto requirement for applying to Senior Researcher (directeur de recherche, or DR) positions at CNRS. Therefore, the experience given by this fellowship will greatly increase the chances of the fellow’s successful application to a DR or Full Professor position.
-
-The SATIr project will be a first exploration of a wide and deep new research direction, and will,
-as such, provide grounds for a more involved subsequent research project, for instance an ERC starting
-grant. The fellow will profit from the experience of both the UCPH services and the scientist’s in charge
-for writing grant proposals, preparing his future career as well as the aftermath of the project.
+The SATIr project will be a first exploration of a wide and deep new research direction, and will, as such, provide grounds for a more involved subsequent research project, for instance an ERC starting grant. The fellow will profit from the experience of both the host institutions services and the scientists’ in charge for writing grant proposals, preparing his future career as well as the aftermath of the project.
 
 
 
