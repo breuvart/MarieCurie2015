@@ -132,7 +132,7 @@
     &  \cellcolor[gray]{0.8} {\bf Country} 
     & \cellcolor[gray]{0.8} \parbox[c]{6em}{\bf Dept./ Division/ Laboratory}
     &  \cellcolor[gray]{0.8} {\bf Supervisor}
-    & \cellcolor[gray]{0.8} \parbox[c]{4em}{\bf Role of partner organization} \\
+    & \cellcolor[gray]{0.8} \parbox[c]{4em}{\bf Role of partner organisation} \\
     \hline
     \underline{Outgoing host} &&&&&&&\\
     \hline
@@ -165,8 +165,7 @@
 %start page count
 
 \section{Summary}
-
-Types systems can be used to automatically check security properties of large programs. By developing the emerging conscept of graded (or BLL-like) systems and by seeking inspiration in abstract interpretation's communoty, we propose to extend the panel of properties checkable by type systems and to extend the analysis to quantitative outputs.
+Types systems can be used to automatically check security properties of large programs. By developing the emerging concept of graded (or BLL-like) systems and by seeking inspiration in abstract interpretation's community, we propose to extend the panel of properties checkable by type systems and to extend the analysis to quantitative outputs.
 
 Software is becoming increasingly complex and critical (autonomous vehicles, the Internet of things, financial systems, etc.). Bugs, security vulnerabilities, or inefficient resource management are costly. {\em Type systems} are a scalable way to analyse software but is hindered by a certain lack of expressiveness. {\em Graded type systems} can improve the state-of-the-art by including more information in the types and by incorporating some inspiration from {\em abstract interpretation}, another {\em static analysis} method which is extremely expressive, but as opposed to types lacks compositionality. {\em Compositionality} is important because it gives great support for {\em scalability}.
 
@@ -180,7 +179,7 @@ Notice, also, that performing statical analysis under richly typed languages sho
 %outdated: allowing dependant type is actually biased: dependant proofs are formally expliciting important invariants of the program that should be of use for automatically check any other properties. Without going that far, advanced type systems offer several ways to encode semantical information inside the type (for readability or for safety). However, actual tools are basically forgetting the type of a program before running the analysis, loosing all this semantical information given by the programmer.
 
 In this project, we propose to investigate a way to recover as much information as possible from type inference which is one of the most complex kinds of compositional and static analysis. %We do not intend to stamp out global analyses that are proven more efficient in the general case. 
-Sacrifying effectiveness of a lobal analysis for efficiency of a local one, we can reasonably expect to get static analyser for functional languages that do not fall too far behind existing ones, while being more scalable and able to interact with other type constraints.
+Scarifying effectiveness of a global analysis for efficiency of a local one, we can reasonably expect to get static analyser for functional languages that do not fall too far behind existing ones, while being more scalable and able to interact with other type constraints.
 
 %drg: Are you sure? Global analysis and optimisation will always outperform compositional analysis. This is a mathematical unavoidable fact which has to do with the non-composability of Kan extensions. 
 %F: Off course, I do not delud myself over this point (even if I did not know the Kan-extention argument). But I belive that for some classes of properties with good notions of dependancy, type systems will not fall so far behind. 
@@ -193,15 +192,16 @@ A good point of comparison would be Hoare triples with preconditions and postcon
 \item All of these conditions are dependent over ``resource variables'' that are instantiated by unification during the composition (adding some new constraints). In particular, this allows any program to have a {\bf most general type} that characterises it; this most general type is computed once and can be reused each time the program is used in a larger project.
 \item Constraints are not logical propositions but element of an {\bf algebraic structure}. These structures take shape of ordered monoids or ordered semirings. They are reminiscent of abstract interpretation domains.
 \end{itemize}
+An other point of comparison would be the assume-guarantee with abstract refinement\footnote{M.G. Bobaru, C.S. Păsăreanu, and D. Giannakopoulou. "Automated assume-guarantee reasoning by abstraction refinement." 2008. In Computer Aided Verification} that share the same idea but do not have our type-directed approach neither our desire to conserve strong mathematical properties.
 
 The SATIR project has three objectives. The {\bf first} (and main) {\bf objective} is to develop the theory of graded type systems in order to be as expressive as possible, to adapt to existing functional languages and to recover AI's constructions (Galois relations and widening). The {\bf second objective} is to track existing instances of graded type systems and to integrate them in our general framework. The {\bf third objective} is to select a fragment of the system for the purpose of implementation: this fragment need to be inferenceable up-to the use of some widening and calls over an SMT solver (to resolve algebraic constraints).
 
 \section{Excellence}
 \subsection{Quality, innovative aspects and credibility of the research\\  (including inter/multidisciplinary aspects)}
 
-The SATIR project intends to specify a particular subclass of abstract interpretation that we call graded type systems. Another way to state it is that SATIR project intends to reinject the whole power of abstract interpretation inside a type system by substituting the choice of the domain by the choice of some more refine algebraic structures called grading structures.
+Abramsky showed in 1990\footnote{S. Abramsky. "Abstract interpretation, logical relations, and Kan extensions." 1990. In Journal of logic and computation} that compositional abstract interpretation where logical relation or (equivalently) realisability models, which are mathematical abstractions for types. The SATIR project intends to specify a particular subclass of realisability models that we call graded type systems. Another way to state it is that SATIR project intends to reinject the whole power of abstract interpretation inside a type system by substituting the choice of the domain by the choice of some more refine algebraic structures called grading structures.
 
-The project can be separated in three distinct objectives. The {\bf Objective 1} is the main objective which intends to build up a comprehensive {\bf theory of graded types} in its most general version. The {\bf Objective 2} pursues real {\bf applications}. %Indeed, we intend to spend an important time looking for existing related work and possible applications. 
+The project can be separated in three distinct objectives. The {\bf Objective 1} is the main objective which intends to build up a comprehensive {\bf theory of graded types} in its most general version. The {\bf Objective 2} pursues real {\bf applications} such as information-flow analysis or higher order model checking. %Indeed, we intend to spend an important time looking for existing related work and possible applications. 
 The intent behind this objective is both to get some inspiration for the general case and to disseminate our results. Finally, {\bf Objective 3} is the delivery of an {\bf implementation} for the end of the three years project.
 
 
@@ -210,8 +210,8 @@ The intent behind this objective is both to get some inspiration for the general
 
 In 2001, Patrick Cousot was writing that ``the most severe restrictions [of type inference] are on the considered properties''\footnote{Patrick Cousot. "Abstract interpretation based formal methods and future challenges (Electronics version)''. In LNCS 2001.}. The situation has now changed and type systems are able to treat a large variety of problems.
 
-Our first example was developed in late 90's in the security community: the use of types for information-flow analyses.\footnote{F. Nielson, H.R. Nielson and C. Hankin. ``Principles of program analysis'', 2015, In Springer} The idea consists in automatically inferring the security level of a program. For example, a program $\lambda xy.x:{\color{red}l.}int\rta {\color{red}l.}int\rta {\color{red}l.}int$ use low security assertion and only take lowly secured input resulting in a lowly secured output. %Similarly, the program $r:ref(h.int), y:l.int\vdash r := !r+y : ()$ takes a reference to a highly secured integer $r$ and a lowly secured integer $y$, the reason it is safe is that the $r$ has only been updated. However, the program $r:ref(l.int), y: h.int\vdash r:= y; r:=0: ()$ seems correct but is not typable which is reasonable since an other thread may be able to read the lowly securized $r$ between the two instructions.
-The apparent weakness of this type system is that a program may have a lot of different types, in particular $\lambda xy.x$ can also have the types ${\color{red}h}.int\rta {\color{red}l.}int\rta {\color{red}h.}int$ or ${\color{red}l.}int\rta {\color{red}h.}int\rta {\color{red}l.}int$. To resolve this weakness, we remark that a lowly secured assumption can always be assumed highly secured so that ${\color{red}l.}int\rta \tau$ is less precise than ${\color{red}h.}int\rta\tau$; moreover, one will never create highly secured objects, so that we always assume that the result is lowly secured by default. With these assumptions, the main type\footnote{assuming that $y$ have to be an integer} of $\lambda xy.x$ is ${\color{red}l.}int\rta {\color{red}h.}int\rta int$.
+Our first example was developed in late 90's in the security community: the use of types for information-flow analyses.\footnote{F. Nielson, H.R. Nielson and C. Hankin. ``Principles of program analysis'', 2015, In Springer} The idea consists in automatically inferring the security level of a program by annotating subtypes by their security level ({\em e.g.}, ${\color{red} l}$ for unsecured and ${\color{red}h}$ for secured). For example, a program $\lambda xy.x:{\color{red}l.}int\rta {\color{red}l.}int\rta {\color{red}l.}int$ will give unsecured output when given unsecured inputs. %Similarly, the program $r:ref(h.int), y:l.int\vdash r := !r+y : ()$ takes a reference to a highly secured integer $r$ and a lowly secured integer $y$, the reason it is safe is that the $r$ has only been updated. However, the program $r:ref(l.int), y: h.int\vdash r:= y; r:=0: ()$ seems correct but is not typable which is reasonable since an other thread may be able to read the lowly securized $r$ between the two instructions.
+The apparent weakness of this type system is that a program may have a lot of different types, in particular $\lambda xy.x$ can also have the types ${\color{red}h}.int\rta {\color{red}l.}int\rta {\color{red}h.}int$ or ${\color{red}l.}int\rta {\color{red}h.}int\rta {\color{red}l.}int$. To resolve this weakness, we remark that an unsecured argument can always be required secured so that ${\color{red}l.}int\rta \tau$ is less precise than ${\color{red}h.}int\rta\tau$; moreover, one will never create inherently secured objects, so that we always assume that the result is lowly secured by default. With these assumptions, the main type\footnote{assuming that $y$ have to be an integer} of $\lambda xy.x$ is ${\color{red}l.}int\rta {\color{red}h.}int\rta int$.
 
 The above is (one of) the most basic instance of BLL-like type systems that we will develop later. Nowadays, information-flow analysis has been developed further along four axes:\footnote{A. Sabelfeld and A.C. Myers, ``Language-based information-flow security'', 2003, In IEEE journal on selected areas in communications} the expressiveness, the concurrency, the covert channel (modularity regarding the observation function of the attacker) and the security policy (allowing restricted declassification). A special consideration will be applied to strengthen graded type system toward each of these directions (WP 1.3.1, WP 2.2.2 and WP 2.3.2).
 
@@ -229,13 +229,13 @@ The function $\lambda f. f\ (f\ x)$ has type ${\color{red} 2.}({\color{red}1.}\m
 
 \todo[inline]{Being biased toward linear logic, I fear that if I give a reference here I would not be fair.}
 
-One of the culminating point of information-flow security area is the language DFuzz\footnote{M. Gaboardi, A. Haeberlen, J. Hsu, A. Narayan and B.C. Pierce}. DFuzz was developed by the host team conjointly with the security team and a former Marie SKODOWSKA-CURIE fellow. This language extends over the covert channel direction by providing only differentially secured programs. Extending the idea of linearity to probabilities, programs of DFuzz are of type ${\color{red}r.}\sigma\rightarrow \tau$, where ${\color{red}r}\in \mathbb{R}^{\ge 0}$ is the expected value over the number of use of the argument. A novelty, here, is that the resource ${\color{red}r}$ can also depend over some ``resource variable'' corresponding, for example, to the number of loop in a recursion.
+One of the important fully fledged systems of the information-flow security area is the language DFuzz\footnote{M. Gaboardi, A. Haeberlen, J. Hsu, A. Narayan and B.C. Pierce}. DFuzz was developed by the host team conjointly with the security team and a former Marie SKODOWSKA-CURIE fellow. This language extends over the covert channel direction by providing only differentially secured programs. Extending the idea of linearity to probabilities, programs of DFuzz are of type ${\color{red}r.}\sigma\rightarrow \tau$, where ${\color{red}r}\in \mathbb{R}^{\ge 0}$ is the expected value over the number of use of the argument. A novelty, here, is that the resource ${\color{red}r}$ can also depend over some ``resource variable'' corresponding, for example, to the number of loop in a recursion.
 
 DFuzz was also openly inspired by a fairly older work independent from information-flow type system: the logic BLL.\footnote{G-Y. Girard, A. Scedrov and P. Scott. ``Bounded linear logic: a modular approach to polynomial-time computability''. 1992. In Theoretical computer science.} BLL is a rich logic which, as a type system, insure the polynomial complexity of typed terms. The resulting language is then sufficiently expressive to allow the resolution of any polynomial problem. Basically, a BLL function type can be seen as  ${\color{red}p.}\sigma\rightarrow \tau$ where $p$ is a polynomial. But this naive description is far from enough to explain BLL's expressiveness.
 
 The real power of BLL its strong notion of dependency (richer than in DFuzz), in the sens that resource variables are binded by the parameters. Indeed, functions terms are in fact of types ${\color{red}(\alpha<p).}\sigma\rightarrow \tau$ where $\alpha$ is a resource variable free in $\sigma$ and binded in ${\color{red}(\alpha<p).}\sigma$, the substitution is then performed along the type derivation (during dereliction phase mainly). If DFuzz's dependency is a ``resource polymorphism'', this dependency is a real ``dependant resource'' comparable to dependant types. This point is still not understood enough and the only other system using a real resource dependency is D$\ell$PCF\footnote{U.D.Lago and M. Gaboardi. ``Linear dependent types and relative completeness''. 2011. In Logic in Computer Science (LICS).} which is directly derived from BLL.
 
-Inspired by all these previous languages, two groups of peoples\footnote{A. Brunel, M. Gaboardi, D. Mazza and S. Zdancewic. ``A core quantitative coeffect calculus''. 2014. In ESOP.}\footnote{D.R. Ghica and A.I. Smith. ``Bounded linear types in a resource semiring''. 2014. In ESOP.} (which both host supervisors are part of) did independantly generalised them into a sole system parametrised by an (ordered) semiring $\sS$: The BLL-like systems or the graded comonad.  This system is obtain by a parametrisation (or grading) of the exponential comonad of the linear logic. In particular, the sum of the semiring corresponds exactly to the contraction and the multiplication correspond exactly to the digging. 
+Inspired by all these previous languages, two groups of peoples\footnote{A. Brunel, M. Gaboardi, D. Mazza and S. Zdancewic. ``A core quantitative coeffect calculus''. 2014. In ESOP.}\footnote{D.R. Ghica and A.I. Smith. ``Bounded linear types in a resource semiring''. 2014. In ESOP.} (which both host supervisors are part of) did independently generalised them into a sole system parametrised by an (ordered) semiring $\sS$: The BLL-like systems or the graded comonad.  This system is obtain by a parametrisation (or grading) of the exponential comonad of the linear logic. In particular, the sum of the semiring corresponds exactly to the contraction and the multiplication correspond exactly to the digging. 
 
 Functions types, in these systems, are of the form ${\color{red}s.}\sigma\rightarrow \tau$ for $s$ an element of a chosen semiring $\sS$ which can be, for example, Booleans (for information-flow security), natural numbers (for linearity), real number (for probabilities) or polynomials (for complexity). Ghica and Smith even introduced a new important application: the use of contractive affine transformations to characterise the Sequentiality of a program (with scheduling objectives). Notice, however, that graded comonads definitely lack of any kind of dependency.
 
@@ -282,7 +282,11 @@ There are three phases, or goals, regarding the applications. {\bf Goal 2.1} aim
 
 \paragraph{Methodology for Objective 3 (Implementation).}
 
-This line of work also takes into account the studies relative to the whole type inference process which form {\bf Goal 3.1}. The implementation itself is the {\bf Goal 3.2}, we are aiming for a simplified functional language where the user only provides the grading structure and heuristics for the widening. The objective also contains {\bf Goal 3.3} which is pure learning over later-phase and future complements such as the use of SMT-solvers.
+This line of work also takes into account the studies relative to the whole type checking and inference processes which form {\bf Goal 3.1}. Regarding the inference process, our philosophy is following the line introduced by Ghica and Smith\footnote{D.R. Ghica and A.I. Smith. ``Bounded linear types in a resource semiring''. 2014. In ESOP.} for graded comonadic types adding UPenn's expertise. Ghica and Smith describe an inference algorithm that stack up constraints over the graded structure and use an SMT solver to resolve these algebraical constraints. In our case, we expect this constraints to stack up at the level of the dependence structure, thus it should be possible to perform a ``classical'' inference algorithm with the addition of a black-box representing the SMT solver.
+
+The implementation itself is the {\bf Goal 3.2}, we are aiming for a modular graded type system for which the user only provides the grading structure and heuristics for the widening. For the prototype, the analyser will only be able to target a simplified functional language. If this phase goes well, we may be able to scale things up to fragment of other existing languages (Ocaml, Haskel or Scala).
+
+The objective also contains {\bf Goal 3.3} which is pure learning over later-phase and future complements such as efficient usage of SMT-solvers.
 
 %\paragraph{Novelty, timeliness and quality.}
 %Althought resulting from a natural convergence of existing works, this project differ from its predecessors by its ambition to be ``vertically modular'' and to reconcile type theory and abstract interpretation. The later is especially important as both tools are actually displayed on the same programs to trace the same kind of properties (albeit at different levels) without sharing any informations...
@@ -292,11 +296,11 @@ This line of work also takes into account the studies relative to the whole type
 %\todo[inline]{In construction}
 
 \subsection{Clarity and quality of transfer of knowledge/training for the development of the researcher in light of the research objectives}
-The present research proposal is built with a training-through-research logic in mind. Additionally, to the schedulling is incorporated several important learning WP which  correspond to the hosts' specialities (excepts for the abstract interpretation which will be the object of a separated visite).
+The present research proposal is built with a training-through-research logic in mind. Additionally, to the scheduling is incorporated several important learning work packages which correspond to the hosts' specialities (excepts for the abstract interpretation which will be the object of a separated visit). Notice, also, that the fellow will have the option to co-supervise masters and PhD theses.
 
-During the outgoing phase, which will consist primarily in scientific cooperation with researchers at UPenn and in US, the fellow will enlarge its restricted view of worldwide research in computer sciences. The collaboration with the outgoing supervisor, in particular, will offer its expertise in the design of types systems and information-flow analyses (one of the main aplication of the project) while receving the experience of the fellow in linear logic, graded systems and denotational semantics which he showed an interest for during the last years. A UPenn, the fellow will more generally have the possibility to interact with experts of essential topics for the evolution of the fellow’s research plan such as programming languages design and security (including type systems design, type inference, formal methods, distributed computing, databases security); but also with experts in topics he has interest but no expertise in such as architecture and embedded systems.
+During the outgoing phase, which will consist primarily in scientific cooperation with researchers at UPenn and in US, the fellow will enlarge its restricted view of worldwide research in computer sciences. The collaboration with the outgoing supervisor, in particular, will offer its expertise in the design of types systems and information-flow analyses (one of the main application of the project) while receiving the experience of the fellow in linear logic, graded systems and denotational semantics which he showed an interest for during the last years. A UPenn, the fellow will more generally have the possibility to interact with experts of essential topics for the evolution of the fellow’s research plan such as programming languages design and security (including type systems design, type inference, formal methods, distributed computing, databases security); but also with experts in topics he has interest but no expertise in such as architecture and embedded systems.
 
-During the outgoing phase, the fellow will be able to work directly with two of the pioneers of graded comonads which the project is based on: the advisor and one of its post-doc. In addition to being expert on graded systems, they are applying this expertise for hardware implementations (by recording sequenciallity or cache policy). Concurrently, the fellow will provide an expertise (linear logic categorical and denotational semantics) as well as his aquired experience from the outgoing phase. Additionally, the fellow will interact with specialists in programing language and domain theories.
+During the outgoing phase, the fellow will be able to work directly with two of the pioneers of graded comonads which the project is based on: the adviser and one of its post-doc. In addition to being expert on graded systems, they are applying this expertise for hardware implementations (by recording sequenciality or cache policy). Concurrently, the fellow will provide an expertise (linear logic categorical and denotational semantics) as well as his acquired experience from the outgoing phase. Additionally, the fellow will interact with specialists in programing language and domain theories.
 
 %Concurrently, the fellow’s background skills (linear-logic, categorical and denotational semantics, rewriting) will reinforce and/or complement the expertise of the host teams at UPenn and Bham, which makes the project interesting also for the hosting organization.
 
@@ -324,11 +328,11 @@ research topic of this project. In particular, it studies advanced type systems 
 functional-oriented languages, ad hoc polymorphism, dependant types, polytypic programming, substructural type systems, language design and implementation, language-based security, metaprogramming, as well as
 foundations for concurrent, distributed, and mobile computing. 
 
-The PL club actually counts 3 professors (the supervisor, \href{http://www.cis.upenn.edu/~bcpierce/}{Benjamin C. Pierce} and  \href{http://www.cis.upenn.edu/~sweirich/}{Stephanie Weirich}) and more than 10 doctoral students and post-doc researchers. The group stand as one of the worldwide top theoritical programing language groups with yearly publications in ACM POPL.
+The PL club actually counts 3 professors (the supervisor, \href{http://www.cis.upenn.edu/~bcpierce/}{Benjamin C. Pierce} and  \href{http://www.cis.upenn.edu/~sweirich/}{Stephanie Weirich}) and more than 10 doctoral students and post-doc researchers. The group stand as one of the worldwide top theoretical programing language groups with yearly publications in ACM POPL.
 
 
 \paragraph{Outgoing Phase Supervisor}
-\href{http://www.cis.upenn.edu/~stevez/}{Steve Zdancewic} is reconised as an international expert of functional programing languages and security. His research interests lie in theoretical computer science, programming language design and implementation (Coq verification of LLVM program transformations and randomized algorithms, type-directed program synthesis, linear types and GUI programming), langage enforcing verification (language-based enforcement of information-flow policies, low-level code memory safety, understanding dynamic security policies, and authorization logic) as well as secure concurrent and distributed computing, functional programming languages, type theory, linear and modal logics, theorem proving and mechanized metatheory. 
+\href{http://www.cis.upenn.edu/~stevez/}{Steve Zdancewic} is recognised as an international expert of functional programing languages and security. His research interests lie in theoretical computer science, programming language design and implementation (Coq verification of LLVM program transformations and randomised algorithms, type-directed program synthesis, linear types and GUI programming), language enforcing verification (language-based enforcement of information-flow policies, low-level code memory safety, understanding dynamic security policies, and authorisation logic) as well as secure concurrent and distributed computing, functional programming languages, type theory, linear and modal logics, theorem proving and mechanised metatheory. 
 
 Steve Zdancewic %received the Ph.D. in Computer Science from Cornell University in 2002 and imediatly joint the University of Pennsylvania as 
 is Full Professor with plenty of supervising experience (3 post-doc and 9 PhD students). He is the author of more than fifty publications in international journals and conferences.
@@ -349,7 +353,7 @@ academic staff, six regular seminar series.
 
 
 \paragraph{Return Host Group}
-In addition to the host supervisor, the \href{http://www.cs.bham.ac.uk/research/groupings/theory/}{Theory group} includ numerous strong figures in fields that are particuliarly relevent for us: Krishnaswami, Escardo are reconised specialists of linear and dependent type systems which graded type system is a refinement. Levy, Reddy are specialists of categorical semantics of programming languages and monads in particular. Jung, Vickers (and Escardo) are specialist of domain theory and can help with the formalisation of graded algebras. Finally,  Ritter is a former specialist in linear logic and is now working on security issues, as such he is a potential collaborator for Goals 2.2 and 2.3. 
+In addition to the host supervisor, the \href{http://www.cs.bham.ac.uk/research/groupings/theory/}{Theory group} include numerous strong figures in fields that are particularly relevant for us: Krishnaswami, Escardo are recognised specialists of linear and dependent type systems which graded type system is a refinement. Levy, Reddy are specialists of categorical semantics of programming languages and monads in particular. Jung, Vickers (and Escardo) are specialist of domain theory and can help with the formalisation of graded algebras. Finally,  Ritter is a former specialist in linear logic and is now working on security issues, as such he is a potential collaborator for Goals 2.2 and 2.3. 
 
 \paragraph{Return Host Supervisor (Scientist in charge)}
 \href{http://www.cs.bham.ac.uk/~drg/}{Dan Ghica} \todo[inline]{CV}
@@ -357,11 +361,11 @@ In addition to the host supervisor, the \href{http://www.cs.bham.ac.uk/research/
 
 \subsection{Capacity of the researcher to reach and re-enforce a position of professional maturity in research}
 
-The fellow is a recognized international expert in the area of denotational models for linear logic and lambda calculus. In that concern, he recieved the Kleene Award for the best student paper at LICS 2014. His work of the full abstraction of the pure $\lambda$-calculus is a culmination of a line of investigation which started about 40 years ago. At the same time, he was an important actor in the development of graded comonoadic systems (of BLL-like systems). He was granted a postdoctoral fellowship by the French institution Inria to spend two years in the team Focus (Bologna, Italy) in order to develope further his quantitative aproch of denotational semantics.
+The fellow is a recognised international expert in the area of denotational models for linear logic and lambda calculus. In that concern, he received the Kleene Award for the best student paper at LICS 2014. His work of the full abstraction of the pure $\lambda$-calculus is a culmination of a line of investigation which started about 40 years ago. At the same time, he was an important actor in the development of graded comonoadic systems (of BLL-like systems). He was granted a postdoctoral fellowship by the French institution Inria to spend two years in the team Focus (Bologna, Italy) in order to develop further his quantitative approach of denotational semantics.
 
-In all the majority of his publications, the fellow has been the sole author, seldom working directly with his advisors, this show his independence and maturity as well as his capacity to set his own research objectives and attain them. Nonetheless, its capacity to work in teamwork in enhanced by a major article with three colaborators from differents countries.\footnote{F. Breuvart, M. Gaboardi, S-Y. Katsumata and D. Orchard. ``Combining effects and coeffects''. 2016.} These publications are yet only conference paper which are the norm in the computer science area; nonetheless, a long version (50 pages) for his main paper has been submited.
+In all the majority of his publications, the fellow has been the sole author, seldom working directly with his advisers, this show his independence and maturity as well as his capacity to set his own research objectives and attain them. Nonetheless, its capacity to work in teamwork in enhanced by a major article with three collaborators from different countries.\footnote{F. Breuvart, M. Gaboardi, S-Y. Katsumata and D. Orchard. ``Combining effects and coeffects''. 2016.} These publications are yet only conference paper which are the norm in the computer science area; nonetheless, a long version (50 pages) for his main paper has been submitted.
 
-His publications and his thesis involve advanced mathematical and computer science methods from a large spectrum of domains: proof theory, rewriting theory, type theory, logic, category theory, order theory, recurtion theory, algebra and $\lambda$-calculus. The large-spectrum of techniques from different fields used in his work demonstrates his open-mindedness, his broad scientific schooling and his capability to learn new techniques. The fellow was also active in creating and sustaining interactions between researchers. He has organized numerous events and took part in several national projects: ANR CHOCO (Curry-Howard for Concurrency), ANR LOGOI (Logic and Geometry of Interaction), RECRE (Rewriting, Realizability), ANRJC COQUAS (COmputing with QUAntitative Semantics).
+His publications and his thesis involve advanced mathematical and computer science methods from a large spectrum of domains: proof theory, rewriting theory, type theory, logic, category theory, order theory, recursion theory, algebra and $\lambda$-calculus. The large-spectrum of techniques from different fields used in his work demonstrates his open-mindedness, his broad scientific schooling and his capability to learn new techniques. The fellow was also active in creating and sustaining interactions between researchers. He has organised numerous events and took part in several national projects: ANR CHOCO (Curry-Howard for Concurrency), ANR LOGOI (Logic and Geometry of Interaction), RECRE (Rewriting, Realizability), ANRJC COQUAS (COmputing with QUAntitative Semantics).
 
 
 
@@ -369,28 +373,31 @@ His publications and his thesis involve advanced mathematical and computer scien
 \section{Impact}
 \subsection{Enhancing research- and innovation-related human resources, skills, and working conditions to realize the potential of individuals and to provide new career perspectives}
 
-This proposal is fashioned around the evolution of the fellow’s activity and career plan. Althought his Ph.D. is based on denotational semantics for functional programing and linear logic, during the last year; the fellow’s efforts were reoriented towards quantitative program analysis, a topic actively developed by several of the fellow’s colleagues at PPS and nearby labs (in particular, at LIPN, Paris 13). The current fellow’s vision is to broaden the perspectives on this areas. 
+This proposal is fashioned around the evolution of the fellow’s activity and career plan. Although his Ph.D. is based on denotational semantics for functional programing and linear logic, during the last year; the fellow’s efforts were reoriented towards quantitative program analysis, a topic actively developed by several of the fellow’s colleagues at PPS and nearby labs (in particular, at LIPN, Paris 13). The current fellow’s vision is to broaden the perspectives on this areas. 
 
-The realization of this project will foster this vision through training and collaboration in foreign research team(s). Its impact on the fellow’s skills will establish (or reinforce) him as a key figure in the development of the field. This fellowship will also amplify the fellow’s scientific outreach, giving him the possibility to act as a bridge with members of the American research community.
+The realisation of this project will foster this vision through training and collaboration in foreign research team(s). Its impact on the fellow’s skills will establish (or reinforce) him as a key figure in the development of the field. This fellowship will also amplify the fellow’s scientific outreach, giving him the possibility to act as a bridge with members of the American research community.
 
-Career-wise, the fellow’s plan is to use its aquired experience to get a lecturer or assistant professor position in UK or in France. The Marie Curie fellowship will also provide the fellow with working experience in a foreign country, an important if not essential asset for most academic positions.  Lastly, his research experience’s enrichment will allow the fellow to prepare a habilitation thesis within the 5 years subsequent to the end of the fellowship.
+The fellow will have the opportunity getting involved in teaching, either as a teaching assistant or as an instructor for a "mini course", and he will be able to co-supervise masters and PhD students.
 
-The SATIr project will be a first exploration of a wide and deep new research direction, and will, as such, provide grounds for a more involved subsequent research project, for instance an ERC starting grant. The fellow will profit from the experience of both the host institutions services and the scientists’ in charge for writing grant proposals, preparing his future career as well as the aftermath of the project.
+Career-wise, the fellow’s plan is to use its acquired experience to get a lecturer or assistant professor position in UK or in France. The Marie Curie fellowship will also provide the fellow with working experience in a foreign country, an important if not essential asset for most academic positions.  Lastly, his research experience’s enrichment and supervision experience will allow the fellow to prepare a habilitation thesis within the 2 years subsequent to the end of the fellowship.
 
+The SATIR project will be a first exploration of a wide and deep new research direction, and will, as such, provide grounds for a more involved subsequent research project, for instance an ERC starting grant. The fellow will profit from the experience of both the host institutions services and the scientists’ in charge for writing grant proposals, preparing his future career as well as the aftermath of the project.
 
 
 
 \subsection{Effectiveness of the proposed measures for communication and results dissemination}
 
 \paragraph{Communication and public engagement strategy of the action.} 
-The fellow plans participe in at least 9 conference events, one visite and 3 invitations. This will be an appropriate occasion for the fellow to communicate his results in his research community. The fellow will also be given an opportunity to take part in several vulgarisation events involving the host institutions. This will allow him to pursue his commitment to dissemination at High School, Middle School and Primary School levels, which began by his involvement in “MJC Daniel Andrée”, ``Science ouverte'', ``PRACCIS'' or the “fête de la science”.
+The fellow plans participate in at least 9 conference events, one visit and 3 invitations. This will be an appropriate occasion for the fellow to communicate his results in his research community. The fellow will also be given an opportunity to take part in several vulgarisation events involving the host institutions. This will allow him to pursue his commitment to dissemination at High School, Middle School and Primary School levels, which began by his involvement in “MJC Daniel Andrée”, ``Science ouverte'', ``PRACCIS'' or the “fête de la science”.
 
 
 \paragraph{Dissemination of the research results.} 
-The dissemination of the results of this project will be assured by submitting them to the most important international conferences of the domain, such as POPL, ESOP, FoSSaCS, CC, LICS, CSL, etc. (which, as is customary in theoretical computer science, have selective program committees), as well as the main scientific journals of the field. Special attention will also be given to presenting the results (perhaps in their preliminary form) to specialized workshops without proceedings in order to benefit from interaction with the communities relevant for the development of the project. Also, technical reports will be systematically made available on publicly and freely accessible repositories (such as ArXiv). Finaly, the resulting implementation will be maid available for everyone under a open-source licence.
+The dissemination of the results of this project will be assured by submitting them to the most important international conferences of the domain, such as POPL, ESOP, FoSSaCS, CC, LICS, CSL, etc. (which, as is customary in theoretical computer science, have selective program committees), as well as the main scientific journals of the field. Special attention will also be given to presenting the results (perhaps in their preliminary form) to specialised workshops without proceedings in order to benefit from interaction with the communities relevant for the development of the project. Also, technical reports will be systematically made available on publicly and freely accessible repositories (such as ArXiv). Finally, the resulting implementation will be maid available for everyone under a open-source licence.
 
-\paragraph{Exploitation of results and intellectual property.} 
-The fellow strongly believes in open-source softwar and the open access of online journals/proceedings; he will always favor this method of publishing in accordance with EU’s policies. 
+Additionally, the fellow intends to take an active part in the organisation of different workshops (such as BLL-workshop, fopara, linearity...).
+
+\paragraph{Exploitation of results and intellectual property.}
+The fellow strongly believes in open-source software and the open access of online journals/proceedings; he will always favor this method of publishing in accordance with EU’s policies. 
 
 
 
@@ -461,7 +468,7 @@ The fellow strongly believes in open-source softwar and the open access of onlin
 
 The project is divided in three parallel lines. The theory line focuses on developing the main theory behind our project. The Application line has for goal to understand related fields and to apply our result to those fields. The Implementation line is targeting an implementation of our language.
 
-It may be unusual to consider so much simultaneous line, but these are interdependant objectives which varies in nature. Such a separation of tasks is usual in the domains where maturation of ideas is fundamental: it is often more efficient to stop working over a subject for a few days in order to get a different point of view.
+It may be unusual to consider so much simultaneous line, but these are interdependent objectives which varies in nature. Such a separation of tasks is usual in the domains where maturation of ideas is fundamental: it is often more efficient to stop working over a subject for a few days in order to get a different point of view.
 
 \paragraph{Theory:}
 The main objective follows a sequential pattern.
@@ -478,23 +485,23 @@ Goal~1.3 consists in optional extensions of the theoretical work.
 \paragraph{Applications:}
 The applications line follows a classic 2-2-2 pattern corresponding to the three applicative objectives, each separated into a learning phase (9 mouths) and an active phase (duration varying with the difficulty level). Notice that this objective is composed only of collaborative material.
 
-Goal~2.1 (work packages~2.1.1 and~2.2) targets the embedding of \BLL, \DlPCF and \DFuzz in our system. It is considered low risk as these languages are well established so that we roughly have to verify that we are taking into consideration each of its components. This objective is mainly aiming at supporting Goal~1.1 with real examples. Moreover, this goal has been scheduled just after one year spent in Focus team (Bologna) that created \DlPCF and in the UPen's programming language team that created \DFuzz.
+Goal~2.1 (work packages~2.1.1 and~2.2) targets the embedding of \BLL, \DlPCF and \DFuzz in our system. It is considered low risk as these languages are well established so that we roughly have to verify that we are taking into consideration each of its components. This objective is mainly aiming at supporting Goal~1.1 with real examples. Moreover, this goal has been scheduled just after one year spent in Focus team (Bologna) that created \DlPCF and in the UPenn's programming language team that created \DFuzz.
 
-Goal~2.2 (work packages~2.2.1 and~2.2.2) targets the embedding of qualitative examples such as the control flow analyzes and\footnote{the intersection-free fragment of} the higher order model checking. This objective is classed high risk for several reasons: this will be the first new application and the relation between graded type systems and higher order model checking is not yet fully established. Its scheduling at middle position among applicative goals permit to manage the high risk by potentially extending the deadline. Moreover, the parallelizing of Goal~2.2 and the work package 1.2.3 is important as the fixpoint construction is fundamental in higher order model checking application. Finally, its scheduling permit a potential additional investigation over intersection type systems at the end of the project.
+Goal~2.2 (work packages~2.2.1 and~2.2.2) targets the embedding of qualitative examples such as the control flow analyses and\footnote{the intersection-free fragment of} the higher order model checking. This objective is classed high risk for several reasons: this will be the first new application and the relation between graded type systems and higher order model checking is not yet fully established. Its scheduling at middle position among applicative goals permit to manage the high risk by potentially extending the deadline. Moreover, the parallelisation of Goal~2.2 and the work package 1.2.3 is important as the fixpoint construction is fundamental in higher order model checking application. Finally, its scheduling permit a potential additional investigation over intersection type systems at the end of the project.
 
 Goal~2.3 (work packages~2.3.1 and~2.3.2) targets the embedding of quantitative examples such as probability or scheduling. This goal is classified medium risk despite their intrinsic difficulties since the applicant has some experience with these cases. Remark that this goal is planed in Birmingham with Dan Ghica that is an expert of the scheduling example (which we believe critical). 
 %G: You will also work with Alex Smith who is an expert in hardware implementations, a possible application which you might mention. 
 %F: Now in my todo list, thanks
 
+ 
+\paragraph{Implementation:}
+For the fellow which background in mainly theoretical, the applicative objective is before all the occasion to learn new competences. 
 
-\paragraph{Implementation:}~\\
-\todo[inline]{Not yet fixed \\
-  WP 3.1.1: learning type inference\\
-  WP 3.1.2: working on type inference of graded type systems\\
-  WP 3.2: concrete implementation\\
-  WP 3.3.1: Learning over SMT solvers\\
-  WP 3.3.2: optional learning
-}
+For Goal~3.1, in particular, the fellow will have the assistance of the outgoing host team to understand (WP~3.1.1) and apply (WP~3.1.2) type inference and type checking algorithms. For this goal to take place in parallel with Goals~1.1 and~1.2 is particularly important. Indeed, some issues may arise regarding the type inference/checking of systems designed in Goals~1.1 and~1.2 and in this case we will need to go back and forth between the two concurrent objectives.
+
+Goal~3.2 is exclusively reserved for the implementation. It is plan the last year once the minimal system has been set out. Notice that we plan to include the advancements from Goal~1.3 gradually, so that an effort will be maid for the code to be as modular as possible.
+
+Finally, Goal~3.3 is a learning-only goal that opens new doors for the future of the fellow and the project. In particular, WP.3.3.1 focuses on integration the optimal usage of SMT solver for the sack of the implementation
 
 
 \paragraph{Milestones and deliverables:}
@@ -505,54 +512,58 @@ The first secondary milestone (around month 9) does not have a deliverable but \
 
 The second secondary milestone (from month 16 to month 18) is a smooth transition with an collaborative article as delivery focused on Objective 2.1 and with early results of WP 3.1.2. {\bf Milestone 2} corresponds to the delivery of two articles. The first is a collaborative article treating WP 1.2.2 and the first advancements over WP 2.2.2. The second is a single-authored article over WP 3.1.2.
 
-The last secondary milestone (from month 27 to month 29) is an other fuzzy transition with a collaborative article as delivery around work packages 1.2.3 and 2.2.2; this milestone will also mark the point where an engineer will be hired to work on the implementation.\todo{to discuss}  {\bf Milestone 3} marks the end of the project with the full implementation of WP 3.2 as delivery as well as a collaborative article over WP 2.3.2 together with results from WP 1.3.1.
+The last secondary milestone (from month 27 to month 29) is an other fuzzy transition with a collaborative article as delivery around work packages 1.2.3 and 2.2.2; this milestone will also mark the point where an engineer will be hired to work on the implementation. \todo{to discuss}  {\bf Milestone 3} marks the end of the project with the full implementation of WP 3.2 as delivery as well as a collaborative article over WP 2.3.2 together with results from WP 1.3.1.
 
 
 \subsection{Appropriateness of the management structure and procedures, including quality management and risk management}
 
-\paragraph{Resources.} The M.S.-C. fellowships contribute 800e/month for “research, training and networking costs”, yielding a total budget of 28.8ke. The theoretical nature of the project gives only 3 types of expenses:
+\paragraph{Resources.} The M.S.-C. fellowships contribute 800e/month for “research, training and networking costs”, yielding a total budget of 28.8k€. The theoretical nature of the project gives only 3 types of expenses:
 \begin{itemize}[itemindent=-2em,leftmargin=2em, labelsep=0.5em, itemsep=0em]
-\item[]\underline{Traveling (17k€)}: attendance to an international conference/workshop is estimated at 1.7ke (domestic/overseas average). We plan to attend 10 such events (of which at least 6 for presenting papers).
-\item[]\underline{Invitations (9k€)}: the cost of a 2-week invitation is estimated at 2.5ke (from overseas) or 2ke (domestic). We plan to get 4 invitations: 2 overseas (the two oposit-phase supervisors) and 2 domestics.
-\item[]\underline{Visit (2.5€)}: an amount of 2.5€ will be reserved for a 3-weeks domestic visit which goal is the deepening of the fellow's knowlege on abstract interpretation.
+\item[]\underline{Travelling (17k€)}: attendance to an international conference/workshop is estimated at 1.7k€ (domestic/overseas average). We plan to attend 10 such events (of which at least 6 for presenting papers).
+\item[]\underline{Invitations (9k€)}: the cost of a 2-week invitation is estimated at 2.5k€ (from overseas) or 2k€ (domestic). We plan to get 4 invitations: 2 overseas (the two opposite-phase supervisors) and 2 domestics.
+\item[]\underline{Visit (2.5€)}: an amount of 2.5€ will be reserved for a 3-weeks domestic visit which goal is the deepening of the fellow's knowledge on abstract interpretation. The location is not decided yet, but potential candidate are the ``Robust Software Engineering technical area'' of the ``NASA Ames'', based at Moffett Field in California (to visit D. Giannakopoulou) or the ``Courant Institute of Mathematical Sciences'' of ``New York University'' (to visit P. and R. Cousot).
 \end{itemize}
-The total is 28.5ke, allowing some slack for extra expenses.
+The total is 28.5k€, allowing some slack for extra expenses.
 
 \paragraph{Risks.} We will now describe, for each medium and high risk work package, of how these risks will be handled.:
 \begin{itemize}[itemindent=-2em,leftmargin=2em, labelsep=0.5em, itemsep=0em]
-\item[] \underline{WP~1.1.2 and WP~1.1.3:} Getting the more general system with full certenty is the objective, but reaching a non optimal one is sufficient for continuing the process (and we already have a weak system).
-\item[] \underline{WP~1.2.2:} Probably the more dangerous and important package, if needed, the study is allowed to overrun its alocated time by delaying WP~1.3.1 which is more modular.
+\item[] \underline{WP~1.1.2 and WP~1.1.3:} Getting the more general system with full certainty is the objective, but reaching a non optimal one is sufficient for continuing the process (and we already have a weak system).
+\item[] \underline{WP~1.2.2:} Probably the more dangerous and important package, if needed, the study is allowed to overrun its allocated time by delaying WP~1.3.1 which is more modular.
 \item[] \underline{WP~1.3.1:} This package is very modular, the only objective is to implement as much extension as possible considering the other constraints.
-\item[] \underline{WP~2.2.2:} The difficulties goes with the integration of the recherches over the HO model checking which is a minor objective that we can skip if needed.
-\item[] \underline{WP 2.3.2:} It may be that the time allowed for this package is not sufficient; in this case, the fellow simply intend to continue recherching on this point after the end of the grant as a side activity.
-\item[] \underline{WP 3.1.2:} While not so risky (there is a lot of allowed time), this objective is necessary to continue to WP~2.2. In case of issues, the presence at UPenn of numerous hyperspecialist in type inference will deffinetly be of of help, and is this help is not sufficient, the delaying WP~3.2 will be necessary.
+\item[] \underline{WP~2.2.2:} The difficulties goes with the integration of the recherche over the HO model checking which is a minor objective that we can skip if needed.
+\item[] \underline{WP 2.3.2:} It may be that the time allowed for this package is not sufficient; in this case, the fellow simply intend to continue researching on this point after the end of the grant as a side activity.
+\item[] \underline{WP 3.1.2:} While not so risky (there is a lot of allowed time), this objective is necessary to continue to WP~2.2. In case of issues, the presence at UPenn of numerous hyper-specialist in type inference will definitely be of of help, and is this help is not sufficient, the delaying WP~3.2 will be necessary.
 \item[] \underline{WP~3.2:} The fellow intend to go as far as possible in the implementation, but if time is laking, then only a fragment of the system will be implemented.
 \end{itemize}
 
 
 \subsection{Appropriateness of the institutional environment (infrastructure)}
-UPen and Bhm both have much experience in helping international employees, many of whom supported by Marie Curie grants. Services are devoted to help foreign employees in finding living accommodation as well as dealing with administrative tasks due to mobility (contracts, taxes, etc.).\todo{true?} The fellow
+UPenn and Bham both have much experience in helping international employees, many of whom supported by Marie Curie grants. Services are devoted to help foreign employees in finding living accommodation as well as dealing with administrative tasks due to mobility (contracts, taxes, etc.). \todo{true?} The fellow
 will therefore receive help not only on his arrival, but for the whole time of his stay, whenever necessary. This will allow him to attend to all administrative aspects of Marie Curie grants, such as preparation of deliverables in a best possible form.
 
 % Moreover, it is the mission of the International Staff Mobility Office, the Accommodation Office and the University’s mentor program to welcome fellows and offer help to successfully make the necessary practical arrangements. The International Staff Mobility Office addresses general and particular aspects of settling in, the Accommodation Office of the faculty specializes in finding suitable housing for long or short term stays, and many volunteers help new arrivals to orient themselves in their new environment and familiarize these with everyday details of academic and social life in Copenhagen through the University’s mentor program.
-The administrative management will further be supported by the EU Office\todo{correct name?} of Bhm – which has been involved in the management of several EU projects – which handles the financial and personnel aspects of national and international research projects including EU projects. The Faculty of Science was the recipient of ???\todo{find the number} Marie Curie Individual Fellowships and has great experience of project administration, leaving the fellow free to focus on scientific aspects of the project by lightening the administrative task load.
+The administrative management will further be supported by the EU Office \todo{correct name?} of Bham – which has been involved in the management of several EU projects – which handles the financial and personnel aspects of national and international research projects including EU projects. The University of Birmingham was the recipient of numerous \todo{find the number} Marie Curie Individual Fellowships and has great experience of project administration, leaving the fellow free to focus on scientific aspects of the project by lightening the administrative task load.
 
-Furthermore, office space and supplies are provided by UPen's department of computer sciences, while research supplies are available through research grants. Each student is guaranteed access to a computer and the Internet from laboratories and from his or her office as well as to systems administration support for computing and data storage. The University Library System holds more than 5,000,000 books and serial volumes in hard copy and digitalized format. Penn strongly encourages students to make use of available university equipment and resources.  Although space permits only this brief survey of SEAS and CIS equipment available to postdoctoral fellows, Penn has equipment and student equipment access policies which have been judged exemplary by its peers.
+Furthermore, office space and supplies are provided by UPenn's department of computer sciences, while research supplies are available through research grants. Each student is guaranteed access to a computer and the Internet from laboratories and from his or her office as well as to systems administration support for computing and data storage. The University Library System holds more than 5,000,000 books and serial volumes in hard copy and digitalised format. Penn strongly encourages students to make use of available university equipment and resources.  Although space permits only this brief survey the equipment available to postdoctoral fellows, Penn has equipment and student equipment access policies which have been judged exemplary by its peers.
 
-Similarly, Bhm will furnish office space, access to scientific papers from all major publishers,
+Similarly, Bham will furnish office space, access to scientific papers from all major publishers,
 books, and computing facilities.
 
 
 \subsection{Competences, experience and complementarity of the participating organisations and institutional commitment}
+The SATIR project will confirm the grading type systems as a promising emerging field of study. These type systems consist in the insertion, inside the types, of abstract information in the form of elements of an algebraic structure which is a reminiscent of abstract interpretation's domains. A special attention in the project management will be applied to mathematical foundations and properties of the type system. The fellow is an expert of graded systems and denotational semantics, and has great experience working with type theory and category theory.  The scientists in charge’s expertise in language design, type theory, information-flow security, graded types systems and quantitative type analysis will perfectly complement the fellow’s strengths to ensure the success of the project.
 
+The scientists’ in charge experience in supervising students and their extended international network will provide the fellow with a unique opportunity to complement his competitive research profile and allow him to prepare a habilitation thesis within two years subsequent to the project. The training and foreign research experience will therefore be a major step in the career development of the fellow.
 
 %Stop page count
+
+\newpage
 
 \section{CV of the Experienced Researcher}
 
 \newcommand\entry[5]{\item[#1]{\bf #2} #3 {\em #4} #5}
 
-\noindent \rule{5.5em}{7pt} {\large \bf Personal Informations} \nobreak
+\noindent \rule{5.5em}{7pt} {\large \bf Personal Information} \nobreak
 \begin{itemize}[itemindent=0em,leftmargin=6em, labelsep=1em]
 \item[Name] Flavien BREUVART
 \item[Birthday] April 6th, 1988
@@ -566,7 +577,7 @@ books, and computing facilities.
 \item[title]{Could the syntax be the chicken and the semantics the egg?}
 \item[subtitle]{From the old style H ∗ to the newborn quantitative coeffects.}
 \item[supervisors]{Antonio Bucciarelli and Michele Pagani}
-\item[defense]{Octobre 23th, 2015}
+\item[defense]{October 23th, 2015}
 \item[jury]{Antonio Bucciarelli (Paris Diderot), Pierre-Louis Curien (CNRS), Dan Ghica (University of Birmingham), Giulio Manzonetto (University Paris 13), Guy McCusker (rapporteur, University of Bath), Michele Pagani (Paris Diderot), Simona Ronchi della Rocca (president, University of Turin), Thomas Streicher (rapporteur, Technische Universitat Darmstadt)}
 \end{itemize}
 
@@ -601,13 +612,13 @@ books, and computing facilities.
 \begin{itemize}[itemindent=0em,leftmargin=6em, labelsep=1em]
 \entry{CSL'15:}{Breuvart Flavien and Pagani Michele,}{}{Berlin, Germany}\\ ``Modelling Coeffects in the Relational Semantics of Linear Logic''\vspace{-0.5em}
 \begin{quote}
-  We give a denotational model of graded comonadinc logics (equivalently BLL-like logics or B$_\sS$LL) in the relational category (Rel) of sets and relations. These logics are parametrised by a given semiring $\sS$, but we parameterize the interpretation in order to model each of the logics. This is possible because of the notion of multiplicity semi-ring, introduced in [3] and  allowing a great variety of exponential comonads in Rel. The interpretation of a particular typing system corresponds then to give a suitable notion of stratification of the exponential comonad associated with the semi-ring parametrising the exponential modality.
+  We give a denotational model of graded comonadinc logics (equivalently BLL-like logics or B$_\sS$LL) in the relational category (Rel) of sets and relations. These logics are parametrised by a given semiring $\sS$, but we parametrise the interpretation in order to model each of the logics. This is possible because of the notion of multiplicity semi-ring, introduced in [3] and  allowing a great variety of exponential comonads in Rel. The interpretation of a particular typing system corresponds then to give a suitable notion of stratification of the exponential comonad associated with the semi-ring parameterising the exponential modality.
 \end{quote}
 \entry{CSL-LICS'14}{Breuvart Flavien}{}{Vienna, Austria}\\ ``On the characterization of models of $\mathcal{H}^*$''\vspace{-0.5em}
 \begin{quote}
   We give a characterization, with respect to a large class of denotational models of untyped $\lambda$-calculus, of those models that are fully abstract for head-normalization, {\em i.e.}, whose equational theory is $\mathcal{H}^*$. An extensional K-model $D$ is fully abstract if and only if it is hyperimmune, {\em i.e.}, non-well founded chains of elements of $D$ cannot be captured by any recursive function.
 
-  The proof is based on a combination of arguments overs two main tools: the B\"ohm trees and the $\lambda$-calculi with tests. The B\"ohm trees constitute a wildly known construction that describe precisely the infinite beaviour of terms (in head reduction). Howeover, $\lambda$-calculi with tests are new structures; they are syntactic extensions of the $\lambda$-calculus with operators defining compact elements of the given models. Since the model appears in the syntax, we are able to perform inductions (and
+  The proof is based on a combination of arguments overs two main tools: the B\"ohm trees and the $\lambda$-calculi with tests. The B\"ohm trees constitute a wildly known construction that describe precisely the infinite behaviour of terms (in head reduction). However, $\lambda$-calculi with tests are new structures; they are syntactic extensions of the $\lambda$-calculus with operators defining compact elements of the given models. Since the model appears in the syntax, we are able to perform inductions (and
 co-inductions) directly on the reduction steps of actual terms.
 \end{quote}
 \entry{TLCA'13}{Breuvart Flavien}{}{Eindhoven, Netherlands}\\ ``The resource lambda calculus is short-sighted in its relational model''\vspace{-0.5em}
@@ -640,8 +651,7 @@ co-inductions) directly on the reduction steps of actual terms.
   to denotational models using comonads, which capture what a program 
   requires from its execution context. This includes demands
   for particular resources, access to variables, and data requirements.
-  Comonads can be naturally graded by using an explicit represen-
-  tation of coeffects as objects of a semiring. Similarly to effect systems,
+  Comonads can be naturally graded by using an explicit representation of coeffects as objects of a semiring. Similarly to effect systems,
   coeffect-graded comonads model coeffect systems that can be
   used to express the requirements of a program using types.
 
@@ -659,7 +669,7 @@ co-inductions) directly on the reduction steps of actual terms.
 \end{quote}
 \entry{2016}{Breuvart Flavien,}{long version}{}\\"On the characterization of models of $\mathcal{H}^*$''\vspace{-0.5em}
 \begin{quote}
-  Long (50 p.) and revisited version of CSL-LICS'14. The original proof from CSL-LICS'14 has been duplicated into a semantic and a syntactic proof of the same theorem. This duplication is applied in order to emphisised the unformal duality between B\"ohm trees and the $\lambda$-calculi with tests: The B\"ohm trees forms a syntactic model that we use in the semantic proof and the $\lambda$-calculi with tests are semantic calculi that we use in the syntactic proof.
+  Long (50 p.) and revisited version of CSL-LICS'14. The original proof from CSL-LICS'14 has been duplicated into a semantic and a syntactic proof of the same theorem. This duplication is applied in order to emphasised the informal duality between B\"ohm trees and the $\lambda$-calculi with tests: The B\"ohm trees forms a syntactic model that we use in the semantic proof and the $\lambda$-calculi with tests are semantic calculi that we use in the syntactic proof.
 \end{quote}
 \end{itemize}
 \noindent \rule{5.5em}{1pt} {\bf non peer-reviewed}  \nobreak
@@ -671,7 +681,7 @@ co-inductions) directly on the reduction steps of actual terms.
   commune, and the simplest one is Rel, the category of sets and relations.
   In proof theory this naturally gave birth to differential proof nets that are
   full and complete for DLL. In turn, these tools can naturally be translated
-  to their intuitionistic counterpart. By taking the co-Kleisly category 
+  to their intuitionistic counterpart. By taking the co-Kleisli category 
   associated to the ! comonad, Rel becomes MRel, a model of the $\lambda$-calculus that
   contains a notion of differentiation. Proof nets can be used naturally to
   extend the $\lambda$-calculus into the lambda calculus with resources, a calculus
@@ -691,13 +701,13 @@ co-inductions) directly on the reduction steps of actual terms.
 \begin{itemize}[itemindent=0em,leftmargin=6em, labelsep=1em]
 \entry{}{Breuvart Flavien,}{}{}\\ ``A sufficient condition for the appoximability of filter models''
 \entry{}{Breuvart Flavien,}{}{}\\ ``Classifying linear categories by their internal semiring''
-\entry{}{Breuvart Flavien, Pierre Marie Pedrot}{}{}\\ ``A type system to infer sequenciality''
+\entry{}{Breuvart Flavien, Pierre Marie P\'edrot}{}{}\\ ``A type system to infer sequenciality''
 \end{itemize}
 
-\noindent \rule{5.5em}{7pt} {\large \bf Responsibilities}  \nobreak
+\noindent \rule{5.5em}{7pt} {\large \bf Academic Responsibilities}  \nobreak
 \begin{itemize}[itemindent=0em,leftmargin=6em, labelsep=1em]
-\entry{2014:}{workshop organization,}{Participation at the organization of the international workshop Domain XI,}{at PPS, University Paris Diderot,}{Paris, France}{}
-\entry{2013:}{seminar organization,}{Organization of the temporary working group ``S\'emantique des calculs classiques'',}{at PPS, University Paris Diderot,}{Paris, France}{}
+\entry{2014:}{workshop organisation,}{Participation at the organisation of the international workshop Domain XI,}{at PPS, University Paris Diderot,}{Paris, France}{}
+\entry{2013:}{seminar organisation,}{Organisation of the temporary working group ``S\'emantique des calculs classiques'',}{at PPS, University Paris Diderot,}{Paris, France}{}
 \entry{2012-2015:}{Representative of PhD students,}{in the Board of directors,}{of the laboratory PPS,}{Paris, France}{}
 \end{itemize}
 
@@ -761,7 +771,85 @@ co-inductions) directly on the reduction steps of actual terms.
  \entry{2005-2007:}{board of directors}{of the association \href{http://mjcda.free.fr/}{\em MJC Daniel Andr\'e}}{}{Drancy, France}{}
 \end{itemize}
 
+\newpage
+
 \section{Capacities of the Participating Organisations}
+
+{\footnotesize
+  \begin{tabular}{| l | l |}
+    \hline
+    \multicolumn{2}{|c|}{University of Pennsylvania (Steve Zdancewic)}\\
+    \hline
+    \parbox[c]{4cm}{General Description} & 
+    \parbox[c]{14cm}{The University of Pennsylvania, founded in 1740 by Benjamin Franklin, is a premier
+      institution providing doctoral education in the United States, and has offered Ph.D. programs for over one hundred
+      years. The University has pre-eminent scholars in all of its disciplines. 21 Nobel Prizes have been awarded to University
+      of Pennsylvania faculty and alumni, and 6 Engineering faculty are in the National Academy of Engineering.
+      Founded in 1972, the Department of Computer and Information Science of the University of Pennsylvania is part
+      of the school of School of Engineering and Applied Science and is one of the birthplace of the modern computer. It
+      was here that the ENIAC, the world’s first electronic, large-scale, general-purpose digital computer, was developed in
+      1946. Nowadays, the Department of Computer and Information Science combines energies of professors, researchers and
+      doctoral students resulting from different research areas: Artificial Intelligence, Graphics, Information Management,
+      Software Principles, Systems, Theory. The faculty of the Department of Computer and Information Science counts 30
+      primary faculty members as well as 500 undergradates, and 300 graduate students (Masters and PhD).
+
+      Among the different research groups, the Programming Language group (Penn PL club)
+      works on several specific topics in programming language theory and practice related to the research topic of this
+      project. In particular, it studies advanced type systems including subtyping, functional-oriented languages, ad hoc
+      polymorphism, dependant types, polytypic programming, substructural type systems, language design and implementation, language-based security, metaprogramming, as well as foundations for concurrent, distributed, and mobile
+      computing.
+      The PL club actually counts 3 professors (the supervisor, Benjamin C. Pierce and Stephanie Weirich) and more than
+      10 doctoral students and post-doc researchers. The group stand as one of the worldwide top theoretical programing
+      language groups with yearly publications in ACM POPL.
+
+      Steve Zdancewic is recognised as an international expert of functional programing
+      languages and security. His research interests lie in theoretical computer science, programming language design
+      and implementation (Coq verification of LLVM program transformations and randomised algorithms, type-directed
+      program synthesis, linear types and GUI programming), language enforcing verification (language-based enforcement
+      of information-flow policies, low-level code memory safety, understanding dynamic security policies, and authorisation
+      logic) as well as secure concurrent and distributed computing, functional programming languages, type theory, linear
+      and modal logics, theorem proving and mechanised metatheory.
+    }\\
+    \hline
+    \parbox[c]{4cm}{Role and Commitment of key persons (supervisor)} & \parbox[c]{14cm}{The scientist in charge will collaborate scientifically with the fellow, including having formalised weekly meetings. The fellow will interact with local group members:  postdocs, PhD students and experts in programming languages, type systems and security, notably B.C. Pierce.}\\
+    \hline
+    \parbox[c]{4cm}{Key  Research  Facilities,   Infrastructure and Equipment} & \parbox[c]{14cm}{The fellow will be given an office including desk, furniture, whiteboard and Internet access} \\
+    \hline
+    \parbox[c]{4cm}{Independent research premises} &  \parbox[c]{14cm}{UPenn maintains independent research premises.}\\
+    \hline
+    \parbox[c]{4cm}{Previous Involvement in\\ Research and Training\\ Programmes} & \parbox[c]{14cm}{The scientist in charge supervised over 9 PhDs and 3 post-docs. He has been undergraduate chair of its department and was 4 time appointed as (co-)organiser of summer schools.} \\
+    \hline
+    \parbox[c]{4cm}{Current  involvement  in\\  Research and Training\\ Programmes} & \parbox[c]{14cm}{} \\
+    \hline
+    \parbox[c]{4cm}{Relevant  Publications  and/or\\  research/innovation product} & \parbox[c]{14cm}{} \\
+    \hline
+    \hline
+    \multicolumn{2}{|c|}{University of Birmingham (Dan Ghica)}\\
+    \hline
+    \parbox[c]{4cm}{General Description} & 
+    \parbox[c]{14cm}{The School of Computer Science of the University of Birmingham is internationally
+      leading in several areas, including foundations of computer science and security. The foundations group includes 9
+      Academic Staff and the security group 7. In REF 2014, 29\% of its research output was judged in the 4* (world-leading)
+      category, and 57\% was judged 3* (internationally leading). Overall, 100\% of its output is of international standard.
+      It has a thriving research environment following its rapid research-led expansion in the last ten years, having c.60
+      research students, c.30 research fellows, and 36 academic staff, six regular seminar series.
+    } \\
+    \hline
+    \parbox[c]{4cm}{Role and Commitment of key persons (supervisor)} & \parbox[c]{14cm}{} \\
+    \hline
+    \parbox[c]{4cm}{Key  Research  Facilities,   Infrastructure and Equipment} & \parbox[c]{14cm}{The fellow will be given an office including desk, furniture, whiteboard and Internet access.} \\
+    \hline
+    \parbox[c]{4cm}{Independent research premises} &  \parbox[c]{14cm}{UPenn maintains independent research premises.}\\
+    \hline
+    \parbox[c]{4cm}{Previous Involvement in\\ Research and Training\\ Programmes} & \parbox[c]{14cm}{} \\
+    \hline
+    \parbox[c]{4cm}{Current  involvement  in\\  Research and Training\\ Programmes} & \parbox[c]{14cm}{} \\
+    \hline
+    \parbox[c]{4cm}{Relevant  Publications  and/or\\  research/innovation product} & \parbox[c]{14cm}{} \\
+    \hline
+  \end{tabular}
+
+}
 
 \section{Ethical Aspects}
 
