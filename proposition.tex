@@ -239,9 +239,9 @@ Inspired by all these previous languages, two groups of peoples\footnote{A. Brun
 
 Function types, in these systems, are of the form ${\color{red}s.}\sigma\rightarrow \tau$ for $s$ an element of a chosen semiring $\sS$ which can be, for example, Booleans (for information-flow security), natural numbers (for linearity), real number (for probabilities) or polynomials (for complexity). Ghica and Smith even introduced a new important application: the use of contractive affine transformations to characterise the Sequentiality of a program (with scheduling objectives). Notice, however, that graded comonads definitely lack of any kind of dependency.
 
-A dual to graded comonads has been independantly introduced: the graded monads.\footnote{S. Katsumata. ``Parametric effect monads and semantics of effect systems''. 2014. In POPL.} If graded comonads represent the backward flow of information and the requirements over the context, graded monads represent the forward flow and the actions preformed by the program. Even if we said that graded monads are dual of graded comonads, those are simpler: they are parametrised by a monoid rather than a semiring since the linearity is not at stack for forward flow analysis.
+A dual to graded comonads has been independently introduced: the graded monads.\footnote{S. Katsumata. ``Parametric effect monads and semantics of effect systems''. 2014. In POPL.} If graded comonads represent the backward flow of information and the requirements over the context, graded monads represent the forward flow and the actions performed by the program. Even if we said that graded monads are dual of graded comonads, these are simpler: they are parametrised by a monoid rather than a semiring since the linearity is not at stack for forward flow analysis.
 
-Graded monads and comonads can be used together through a graded distributive law. This phenomenon has been described in a submitted paper by the fellow and co-authors.\footnote{F. Breuvart, M. Gaboardi, S-Y. Katsumata and D. Orchard. ``Combining effects and coeffects''. 2016.} This interaction is very rich and permit to take into account both the actions for the requirements' calculation, and the consumptions (requirements) for the productions' calculation. Moreover the choices of the considered monad and comonad are independent, adding a lot of modularity.
+Graded monads and comonads can be used together through a graded distributive law. This phenomenon has been described in a submitted paper by the fellow and co-authors.\footnote{F. Breuvart, M. Gaboardi, S-Y. Katsumata and D. Orchard. ``Combining effects and coeffects''. 2016.} This interaction is very rich and take into account both the actions for the requirements' calculation, and the consumptions (requirements) for the productions' calculation. Moreover the choices of the considered monad and comonad are independent, adding a lot of modularity.
 
 The requirements and actions (also called coeffects and effects), can be seen as pre- and post-conditions. However, since a part of the information can flow forward and the other can flow backward, the symbolic representations for pre- and post-conditions are disjoint. This is to oppose to other systems such as Haskell refinement types or Schopenhauer types.\footnote{K. Hammond, M. Hofmann, S. Jost, H.-W. Loidl. ``Static determination of quantitative resource usage for higher-order programs''. In ACM SIGPLAN-SIGACT POPL’10.} A surprising point is the difficulty to naturally model these systems into the graded monad-comonad interaction. This comes from the intrinsically linear nature of graded comonad that can model non-linear behaviours but with a lack of naturality. This point has been captured explicitly by Petricek {\em et al}'s notion of shapes.\footnote{T. Petricek, D. Orchard, and A. Mycroft. ``Coeffects: A calculus of context-dependent computation''. 2014. In CM SIG-PLAN ICFP}
 
@@ -252,15 +252,15 @@ Finally, it is worth to notice the recent works of Grellois and Melli\'es that s
 
 \paragraph{Methodology for Objective 1 (Theory).}
 
-This objective can be split in three successive goals each of them containing three work packages. {\bf Goal 1.1} consists in identifying the exact nature of grading structures. {\bf Goal 1.2} aims at transporting abstract interpretation principles to graded type systems. Finally, {\bf Goal 1.3} extends the result in several directions (generalisations to a full fledged language and to intersection type systems).
+This objective can be split in three successive goals each of them containing three work packages. {\bf Goal 1.1} consists in identifying the exact nature of grading structures. {\bf Goal 1.2} aims at transporting abstract interpretation principles to graded type systems. Finally, {\bf Goal 1.3} extends the result in several directions (generalisations to a full-fledged language and to intersection type systems).
 
-\noindent{\bf Goal~1.1} is aiming to be the basis of the whole project. At such, we expect the resulting system to respect many strong properties. First, its construction should be logic- and semantic-oriented, which is the main interest of WP~1.1.1. Moreover, the systems will be presented with a strong soundness/completeness result between their operational semantic, categorical acclimatisation and concrete models.\footnote{Or at least for several key examples since a general notion of operation is not expected.} Notice that the fellow is an expert of denotational semantics and found the first denotational model of graded comonads.\footnote{F. Breuvart, M. Pagani. ``Modelling Coeffects in the Relational Semantics of Linear Logic''. 2015. In CSL.}
+\noindent{\bf Goal~1.1} is aiming to be the basis of the whole project. As such, we expect the resulting systems to respect many strong properties. First, its construction should be logic- and semantic-oriented, which is the main interest of WP~1.1.1. Moreover, the systems will be presented with a strong soundness/completeness result between their operational semantic, categorical acclimatisation and concrete models.\footnote{Or at least for several key examples since a general notion of operation is not expected.} Notice that the fellow is an expert of denotational semantics and found the first denotational model of graded comonads.\footnote{F. Breuvart, M. Pagani. ``Modelling Coeffects in the Relational Semantics of Linear Logic''. 2015. In CSL.}
 
- Work package~1.1.1 is a package that focuses on grading non conventional models of linear logic, monads and comonads in order to investigate natural extensions of graded type systems. A lot of studies implies strong models of linear logic, of monads or of comonads, that are containing far more semantic information than the syntactical object they are modelling. We will try to extract a part of these information in a graded (co-)monad and see is there is natural syntactical way to extract the remaining information.\footnote{See Section~3.2 of the fellow's thesis that will be the object of a forthcoming paper.}
+ Work package~1.1.1 is a package that focuses on grading non conventional models of linear logic, monads and comonads in order to investigate natural extensions of graded type systems. A lot of studies imply strong models of linear logic, of monads or of comonads, that are containing far more semantic information than the syntactic object they are modelling. We will try to extract a part of this information in a graded (co-)monad and see if there is a natural and syntactical way to extract the remaining information.\footnote{See Section~3.2 of the fellow's thesis that will be the object of a forthcoming paper.}
 
-Work package~1.1.2 has the objective to specify the full notion of dependence over grading structures. We aim at merging the notion of graded comonad and the exponential of the original BLL logic. This point is difficult, but early results over WP~1.1.1 shows that we can get close to this objective by generalising the algebraic structure behind graded comonad from a semiring to a certain kind of semiringoid (that I called dependant semiring) with an external action.
+Work package~1.1.2 has the objective to specify the full notion of dependence over grading structures. We aim at merging the notion of graded comonad and the exponential of the original BLL logic. This point is difficult, but early results over WP~1.1.1 shows that we can get closer to this objective by generalising the algebraic structure behind graded comonad from a semiring to a certain kind of semiringoid (that I called dependant semiring) with an external action.
 
-In work package~1.1.3 we aim at decomposing further the separation between graded monad, comonad and dependency in order not to forget any kind of hidden structure. In particular, the issue from Petrieck {\em et al}'s notion of shapes.\footnote{T. Petricek, D. Orchard, and A. Mycroft. ``Coeffects: A calculus of context-dependent computation''. 2014. In CM SIG-PLAN ICFP} regarding flat and structural shapes may indicate that the notion of graded comonad is not sufficiently fine yet. In order to perform this decomposition, we will destructure graded monads and comonads into graded adjunctions.
+In work package~1.1.3 we aim at decomposing further the separation between graded monad, comonad and dependency in order not to forget any kind of hidden structure. In particular, an distinction, in Petrieck {\em et al}'s notion of shapes,\footnote{T. Petricek, D. Orchard, and A. Mycroft. ``Coeffects: A calculus of context-dependent computation''. 2014. In CM SIG-PLAN ICFP} between flat and structural shapes may indicate that the notion of graded comonad is not sufficiently fine yet. In order to perform this decomposition, we will destructure graded monads and comonads into graded adjunctions.
 
 \noindent{\bf Goal~1.2} is focusing on the order-theoretic approach of graded structures. Work package~1.2.1 is a learning-focused package that aims at expanding the knowledge of the applicant regarding abstract interpretation. %drg: you need a strong collaborator here! %F: true... that is one of the bad-point of the proposal. 
 Work package~1.2.2 explores in more detail the order that naturally arises from grading structures in order to link it with domain theory. Work package~1.2.3 is focusing on fixpoints, and in particular on the corresponding notion of widening.
@@ -772,11 +772,9 @@ co-inductions) directly on the reduction steps of actual terms.
  \entry{2007-2008:}{active member}{of \href{http://www.scienceouverte.fr/}{\em Sciences Ouvertes}}{}{Drancy, France}{}
  \entry{2005-2007:}{board of directors}{of the association \href{http://mjcda.free.fr/}{\em MJC Daniel Andr\'e}}{}{Drancy, France}{}
 \end{itemize}
-
-\newpage
+%\newpage
 
 \section{Capacities of the Participating Organisations}
-
 {\footnotesize
   \begin{tabular}{| l | l |}
     \hline
@@ -879,14 +877,16 @@ co-inductions) directly on the reduction steps of actual terms.
     \hline
   \end{tabular}
 }
+\newpage
 
 \section{Ethical Aspects}
 
 There are no ethical sensitive issues associated with the subject of this proposal.
 
+\newpage
 
 \section{Letters of Commitment of Partner Organisations}
-
+\includegraphics[angle=0,origin=c,scale=0.85]{Lettre_of_commitment.pdf}
 
 \label{LastPage}
 \end{document}
