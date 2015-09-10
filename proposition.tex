@@ -3,7 +3,7 @@
   a4paper,
   margin = 15mm,
 ]{geometry}
-\usepackage{todonotes}
+\usepackage[disable]{todonotes}
 %\usepackage[utf8]{inputenc}
 %\usepackage[english, frenchb]{babel}
 \usepackage{amssymb}
@@ -167,19 +167,19 @@
 \section{Summary}
 Types systems can be used to automatically check security properties of large programs. By developing the emerging concept of graded (or BLL-like) systems and by seeking inspiration in abstract interpretation's community, we propose to extend the panel of properties checkable by type systems and to extend the analysis to quantitative outputs.
 
-Software is becoming increasingly complex and critical (autonomous vehicles, the Internet of things, financial systems, etc.). Bugs, security vulnerabilities, or inefficient resource management are costly. {\em Type systems} are a scalable way to analyse software but is hindered by a certain lack of expressiveness. {\em Graded type systems} can improve the state-of-the-art by including more information in the types and by incorporating some inspiration from {\em abstract interpretation}, another {\em static analysis} method which is extremely expressive, but as opposed to types lacks compositionality. {\em Compositionality} is important because it gives great support for {\em scalability}.
+Software is becoming increasingly complex and critical (autonomous vehicles, the Internet of things, financial systems, etc.). Bugs, security vulnerabilities, or inefficient resource management are costly. {\em Type systems} are a scalable way to analyse software, but is hindered by a certain lack of expressiveness. {\em Graded type systems} can improve the state-of-the-art by including more information in the types and by incorporating some inspiration from {\em abstract interpretation}, another {\em static analysis} method which is extremely expressive, but as opposed to types lacks compositionality. {\em Compositionality} is important because it gives great support for {\em scalability}.
 
 Functional programming languages often use complex type systems describing the behaviour of the programs. These types are statically inferred before the compilation, acting as a first test for the correctness of the program. The advantage of type systems is their inherent compositionality. This means that libraries come with pre-computed types which are easily checkable. However, the verification power is low, restricted to the fact that composition of programs never fails due to incompatibility of format.
 
-More refined static, whole-program analysis can generally be performed by abstract interpretation (AI). Those techniques are very efficient but fail to compose. This means that any new analysis has to be performed through the whole program, including libraries. Such a global analysis has two flaws: it is often too resource consuming to be used on a regular basis, and the behaviours of common libraries are approximated while it could be interesting to manually optimise their interpretation once and for all.
+More refined static, whole-program analysis can generally be performed by abstract interpretation (AI). Those techniques are very efficient, but fail to compose. This means that any new analysis has to be performed through the whole program, including libraries. Such a global analysis has two flaws: it is often too resource consuming to be used on a regular basis, and the behaviours of common libraries are approximated while it could be interesting to manually optimise their interpretation once and for all.
 
-In parallel, several functional languages such as \href{https://coq.inria.fr/}{Coq}, \href{http://wiki.portal.chalmers.se/agda/pmwiki.php}{Agda}, \href{https://www.fstar-lang.org/}{F*} or \href{http://www.idris-lang.org/}{Idris} offer to associate to programs certain proofs of correctness encoded in a dependent type system. These dependent type systems are extremely expressive: not only can they catch up to any abstract interpretation analyses but they can describe many more refined behaviours. Moreover, these systems are still compositional and can produce certificates. However, the automatic inference is hardly ever automatisable, so the programmer has to produce the proofs mostly manually, even though the system can provide some help.
+In parallel, several functional languages such as \href{https://coq.inria.fr/}{Coq}, \href{http://wiki.portal.chalmers.se/agda/pmwiki.php}{Agda}, \href{https://www.fstar-lang.org/}{F*} or \href{http://www.idris-lang.org/}{Idris} offer to associate to programs certain proofs of correctness encoded in a dependent type system. These dependent type systems are extremely expressive: not only can they catch up to any abstract interpretation analyses but they can describe much more refined behaviours. Moreover, these systems are still compositional and can produce certificates. However, the automatic inference is hardly ever automatisable, so the programmer has to produce the proofs (mostly) manually, even though the system can provide some help.
 
 Notice, also, that performing statical analysis under richly typed languages should be advantageous:  advanced type systems offer several ways to encode semantic information inside the type (for readability or for safety). However, actual tools are basically forgetting the type of a program before running the analysis, losing all this semantic information given by the programmer.
 %outdated: allowing dependant type is actually biased: dependant proofs are formally expliciting important invariants of the program that should be of use for automatically check any other properties. Without going that far, advanced type systems offer several ways to encode semantical information inside the type (for readability or for safety). However, actual tools are basically forgetting the type of a program before running the analysis, loosing all this semantical information given by the programmer.
 
 In this project, we propose to investigate a way to recover as much information as possible from type inference which is one of the most complex kinds of compositional and static analysis. %We do not intend to stamp out global analyses that are proven more efficient in the general case. 
-Scarifying effectiveness of a global analysis for efficiency of a local one, we can reasonably expect to get static analyser for functional languages that do not fall too far behind existing ones, while being more scalable and able to interact with other type constraints.
+Sacrificing effectiveness of a global analysis for efficiency of a local one, we can reasonably expect to get static analyser for functional languages that do not fall too far behind existing ones, while being more scalable and able to interact with other type constraints.
 
 %drg: Are you sure? Global analysis and optimisation will always outperform compositional analysis. This is a mathematical unavoidable fact which has to do with the non-composability of Kan extensions. 
 %F: Off course, I do not delud myself over this point (even if I did not know the Kan-extention argument). But I belive that for some classes of properties with good notions of dependancy, type systems will not fall so far behind. 
@@ -192,32 +192,32 @@ A good point of comparison would be Hoare triples with preconditions and postcon
 \item All of these conditions are dependent over ``resource variables'' that are instantiated by unification during the composition (adding some new constraints). In particular, this allows any program to have a {\bf most general type} that characterises it; this most general type is computed once and can be reused each time the program is used in a larger project.
 \item Constraints are not logical propositions but element of an {\bf algebraic structure}. These structures take shape of ordered monoids or ordered semirings. They are reminiscent of abstract interpretation domains.
 \end{itemize}
-An other point of comparison would be the assume-guarantee with abstract refinement\footnote{M.G. Bobaru, C.S. Păsăreanu, and D. Giannakopoulou. "Automated assume-guarantee reasoning by abstraction refinement." 2008. In Computer Aided Verification} that share the same idea but do not have our type-directed approach neither our desire to conserve strong mathematical properties.
+Another point of comparison would be the assume-guarantee with an abstract refinement\footnote{M.G. Bobaru, C.S. Păsăreanu, and D. Giannakopoulou. "Automated assume-guarantee reasoning by abstraction refinement." 2008. In Computer Aided Verification} that share the same idea, but do not have our type-directed approach neither our desire to conserve strong mathematical properties.
 
 The SATIR project has three objectives. The {\bf first} (and main) {\bf objective} is to develop the theory of graded type systems in order to be as expressive as possible, to adapt to existing functional languages and to recover AI's constructions (Galois relations and widening). The {\bf second objective} is to track existing instances of graded type systems and to integrate them in our general framework. The {\bf third objective} is to select a fragment of the system for the purpose of implementation: this fragment need to be inferenceable up-to the use of some widening and calls over an SMT solver (to resolve algebraic constraints).
 
 \section{Excellence}
 \subsection{Quality, innovative aspects and credibility of the research\\  (including inter/multidisciplinary aspects)}
 
-Abramsky showed in 1990\footnote{S. Abramsky. "Abstract interpretation, logical relations, and Kan extensions." 1990. In Journal of logic and computation} that compositional abstract interpretation where logical relation or (equivalently) realisability models, which are mathematical abstractions for types. The SATIR project intends to specify a particular subclass of realisability models that we call graded type systems. Another way to state it is that SATIR project intends to reinject the whole power of abstract interpretation inside a type system by substituting the choice of the domain by the choice of some more refine algebraic structures called grading structures.
+Abramsky showed in 1990\footnote{S. Abramsky. "Abstract interpretation, logical relations, and Kan extensions." 1990. In Journal of logic and computation} that compositional abstract interpretation where the logical relation or (equivalently) the realisability models, which are mathematical abstractions for types. The SATIR project intends to specify a particular subclass of realisability models that we call graded type systems. Another way to state it is that SATIR project intends to reinject the whole power of abstract interpretation inside a type system by substituting the choice of the domain by the choice of some more refine algebraic structures called grading structures.
 
 The project can be separated in three distinct objectives. The {\bf Objective 1} is the main objective which intends to build up a comprehensive {\bf theory of graded types} in its most general version. The {\bf Objective 2} pursues real {\bf applications} such as information-flow analysis or higher order model checking. %Indeed, we intend to spend an important time looking for existing related work and possible applications. 
-The intent behind this objective is both to get some inspiration for the general case and to disseminate our results. Finally, {\bf Objective 3} is the delivery of an {\bf implementation} for the end of the three years project.
+The intent behind this objective is both to get some inspiration for the general case and to disseminate our results. Finally, {\bf Objective 3} is the delivery of an {\bf implementation} for the end of the three-year project.
 
 
 \paragraph{State of the art.}
 
 
-In 2001, Patrick Cousot was writing that ``the most severe restrictions [of type inference] are on the considered properties''\footnote{Patrick Cousot. "Abstract interpretation based formal methods and future challenges (Electronics version)''. In LNCS 2001.}. The situation has now changed and type systems are able to treat a large variety of problems.
+In 2001, Patrick Cousot wrote that ``the most severe restrictions [of type inference] are on the considered properties''\footnote{Patrick Cousot. "Abstract interpretation based formal methods and future challenges (Electronics version)''. In LNCS 2001.}. The situation has now changed and type systems are able to treat a large variety of problems.
 
 Our first example was developed in late 90's in the security community: the use of types for information-flow analyses.\footnote{F. Nielson, H.R. Nielson and C. Hankin. ``Principles of program analysis'', 2015, In Springer} The idea consists in automatically inferring the security level of a program by annotating subtypes by their security level ({\em e.g.}, ${\color{red} l}$ for unsecured and ${\color{red}h}$ for secured). For example, a program $\lambda xy.x:{\color{red}l.}int\rta {\color{red}l.}int\rta {\color{red}l.}int$ will give unsecured output when given unsecured inputs. %Similarly, the program $r:ref(h.int), y:l.int\vdash r := !r+y : ()$ takes a reference to a highly secured integer $r$ and a lowly secured integer $y$, the reason it is safe is that the $r$ has only been updated. However, the program $r:ref(l.int), y: h.int\vdash r:= y; r:=0: ()$ seems correct but is not typable which is reasonable since an other thread may be able to read the lowly securized $r$ between the two instructions.
 The apparent weakness of this type system is that a program may have a lot of different types, in particular $\lambda xy.x$ can also have the types ${\color{red}h}.int\rta {\color{red}l.}int\rta {\color{red}h.}int$ or ${\color{red}l.}int\rta {\color{red}h.}int\rta {\color{red}l.}int$. To resolve this weakness, we remark that an unsecured argument can always be required secured so that ${\color{red}l.}int\rta \tau$ is less precise than ${\color{red}h.}int\rta\tau$; moreover, one will never create inherently secured objects, so that we always assume that the result is lowly secured by default. With these assumptions, the main type\footnote{assuming that $y$ have to be an integer} of $\lambda xy.x$ is ${\color{red}l.}int\rta {\color{red}h.}int\rta int$.
 
-The above is (one of) the most basic instance of BLL-like type systems that we will develop later. Nowadays, information-flow analysis has been developed further along four axes:\footnote{A. Sabelfeld and A.C. Myers, ``Language-based information-flow security'', 2003, In IEEE journal on selected areas in communications} the expressiveness, the concurrency, the covert channel (modularity regarding the observation function of the attacker) and the security policy (allowing restricted declassification). A special consideration will be applied to strengthen graded type system toward each of these directions (WP 1.3.1, WP 2.2.2 and WP 2.3.2).
+The above is (one of) the most basic instance of BLL-like type systems that we will develop later. Nowadays, information-flow analysis has been developed further along four axes:\footnote{A. Sabelfeld and A.C. Myers, ``Language-based information-flow security'', 2003, In IEEE journal on selected areas in communications} the expressiveness, the concurrency, the covert channel (modularity regarding the observation function of the attacker) and the security policy (allowing restricted declassification). A special consideration will be applied to strengthen the graded type systems toward each of these directions (WP 1.3.1, WP 2.2.2 and WP 2.3.2).
 
 \todo[inline]{Flavien to Steve: I kinda remember that you had several papers in this area, maybe can you add a few sentences/references???}
 
-Linear types where introduced \todo{independently?} in different areas, and in particular for finer information-flow analysis. It consists at insuring that some argument is used exactly once (or at most once), which is useful for a more efficient compilation or for security. A more refined version of a linear types system is a multilinear type system where arguments are tagged with an integer bounding there number of use. Even more interesting, this tag can be inferred automatically via type inference. Bellow is an example of a type derivation in call by name:
+Linear types were introduced \todo{independently?} in different areas, and in particular for finer information-flow analysis. It consists at insuring that an argument is used exactly once (or at most once), which is useful for a more efficient compilation or for security. A more refined version of a linear type system is a multilinear type system where arguments are tagged with an integer bounding theire number of uses. Even more interesting, this tag can be inferred automatically via type inference. Bellow is an example of a type derivation in call by name:
 \begin{center}
   \AxiomC{$x: {\color{red} 1.}\mathtt{int} \vdash \lambda f. f\ (f\ x) : {\color{red} 2.}({\color{red}1.}\mathtt{int}\rightarrow \mathtt{int})\rightarrow \mathtt{int}$}
   \AxiomC{$x: {\color{red}1.}\mathtt{int} \vdash \lambda y.y+x : {\color{red}1.}\mathtt{int}\rightarrow \mathtt{int}$}
@@ -229,15 +229,15 @@ The function $\lambda f. f\ (f\ x)$ has type ${\color{red} 2.}({\color{red}1.}\m
 
 \todo[inline]{Being biased toward linear logic, I fear that if I give a reference here I would not be fair.}
 
-One of the important fully fledged systems of the information-flow security area is the language DFuzz\footnote{M. Gaboardi, A. Haeberlen, J. Hsu, A. Narayan and B.C. Pierce}. DFuzz was developed by the host team conjointly with the security team and a former Marie SKODOWSKA-CURIE fellow. This language extends over the covert channel direction by providing only differentially secured programs. Extending the idea of linearity to probabilities, programs of DFuzz are of type ${\color{red}r.}\sigma\rightarrow \tau$, where ${\color{red}r}\in \mathbb{R}^{\ge 0}$ is the expected value over the number of use of the argument. A novelty, here, is that the resource ${\color{red}r}$ can also depend over some ``resource variable'' corresponding, for example, to the number of loop in a recursion.
+One of the important fully fledged systems of the information-flow security area is the language DFuzz\footnote{M. Gaboardi, A. Haeberlen, J. Hsu, A. Narayan and B.C. Pierce}. DFuzz was developed by the host team conjointly with the security team and a former Marie SKODOWSKA-CURIE fellow. This language extends over the covert channel direction by only providing differentially secured programs. Extending the idea of linearity to probabilities, programs of DFuzz are of type ${\color{red}r.}\sigma\rightarrow \tau$, where ${\color{red}r}\in \mathbb{R}^{\ge 0}$ is the expected value over the number of use of the argument. A novelty, here, is that the resource ${\color{red}r}$ can also depend over some ``resource variable'' corresponding, for example, to the number of loop in a recursion.
 
-DFuzz was also openly inspired by a fairly older work independent from information-flow type system: the logic BLL.\footnote{G-Y. Girard, A. Scedrov and P. Scott. ``Bounded linear logic: a modular approach to polynomial-time computability''. 1992. In Theoretical computer science.} BLL is a rich logic which, as a type system, insure the polynomial complexity of typed terms. The resulting language is then sufficiently expressive to allow the resolution of any polynomial problem. Basically, a BLL function type can be seen as  ${\color{red}p.}\sigma\rightarrow \tau$ where $p$ is a polynomial. But this naive description is far from enough to explain BLL's expressiveness.
+DFuzz was also openly inspired by an older work which is independent from information-flow type system: the logic BLL.\footnote{G-Y. Girard, A. Scedrov and P. Scott. ``Bounded linear logic: a modular approach to polynomial-time computability''. 1992. In Theoretical computer science.} BLL is a rich logic, which, as a type system, insure the polynomial complexity of typed terms. The resulting language is then sufficiently expressive to allow the resolution of any polynomial problem. Basically, a BLL function type can be seen as  ${\color{red}p.}\sigma\rightarrow \tau$ where $p$ is a polynomial. But this naive description is far from enough to explain BLL's expressiveness.
 
-The real power of BLL its strong notion of dependency (richer than in DFuzz), in the sens that resource variables are binded by the parameters. Indeed, functions terms are in fact of types ${\color{red}(\alpha<p).}\sigma\rightarrow \tau$ where $\alpha$ is a resource variable free in $\sigma$ and binded in ${\color{red}(\alpha<p).}\sigma$, the substitution is then performed along the type derivation (during dereliction phase mainly). If DFuzz's dependency is a ``resource polymorphism'', this dependency is a real ``dependant resource'' comparable to dependant types. This point is still not understood enough and the only other system using a real resource dependency is D$\ell$PCF\footnote{U.D.Lago and M. Gaboardi. ``Linear dependent types and relative completeness''. 2011. In Logic in Computer Science (LICS).} which is directly derived from BLL.
+The real power of BLL its strong notion of dependency (richer than in DFuzz), in the sens that resource variables are binded by the parameters. Indeed, functions terms are in fact of types ${\color{red}(\alpha<p).}\sigma\rightarrow \tau$ where $\alpha$ is a resource variable free in $\sigma$ and binded in ${\color{red}(\alpha<p).}\sigma$, the substitution is then performed along the type derivation (during dereliction phase mainly). If DFuzz's dependency is a ``resource polymorphism'', this dependency is a real ``dependant resource'' comparable with dependant types. This point is still not understood enough and the only other system using a real resource dependency is D$\ell$PCF\footnote{U.D.Lago and M. Gaboardi. ``Linear dependent types and relative completeness''. 2011. In Logic in Computer Science (LICS).} which is directly derived from BLL.
 
-Inspired by all these previous languages, two groups of peoples\footnote{A. Brunel, M. Gaboardi, D. Mazza and S. Zdancewic. ``A core quantitative coeffect calculus''. 2014. In ESOP.}\footnote{D.R. Ghica and A.I. Smith. ``Bounded linear types in a resource semiring''. 2014. In ESOP.} (which both host supervisors are part of) did independently generalised them into a sole system parametrised by an (ordered) semiring $\sS$: The BLL-like systems or the graded comonad.  This system is obtain by a parametrisation (or grading) of the exponential comonad of the linear logic. In particular, the sum of the semiring corresponds exactly to the contraction and the multiplication correspond exactly to the digging. 
+Inspired by all these previous languages, two groups of peoples\footnote{A. Brunel, M. Gaboardi, D. Mazza and S. Zdancewic. ``A core quantitative coeffect calculus''. 2014. In ESOP.}\footnote{D.R. Ghica and A.I. Smith. ``Bounded linear types in a resource semiring''. 2014. In ESOP.} (which both host supervisors are part of) did independently generalised them into a sole system, parametrised by an (ordered) semiring $\sS$: The BLL-like systems or the graded comonad.  This system is obtain by a parametrisation (or grading) of the exponential comonad of the linear logic. In particular, the sum of the semiring corresponds exactly to the contraction and the multiplication correspond exactly to the digging. 
 
-Functions types, in these systems, are of the form ${\color{red}s.}\sigma\rightarrow \tau$ for $s$ an element of a chosen semiring $\sS$ which can be, for example, Booleans (for information-flow security), natural numbers (for linearity), real number (for probabilities) or polynomials (for complexity). Ghica and Smith even introduced a new important application: the use of contractive affine transformations to characterise the Sequentiality of a program (with scheduling objectives). Notice, however, that graded comonads definitely lack of any kind of dependency.
+Function types, in these systems, are of the form ${\color{red}s.}\sigma\rightarrow \tau$ for $s$ an element of a chosen semiring $\sS$ which can be, for example, Booleans (for information-flow security), natural numbers (for linearity), real number (for probabilities) or polynomials (for complexity). Ghica and Smith even introduced a new important application: the use of contractive affine transformations to characterise the Sequentiality of a program (with scheduling objectives). Notice, however, that graded comonads definitely lack of any kind of dependency.
 
 A dual to graded comonads has been independantly introduced: the graded monads.\footnote{S. Katsumata. ``Parametric effect monads and semantics of effect systems''. 2014. In POPL.} If graded comonads represent the backward flow of information and the requirements over the context, graded monads represent the forward flow and the actions preformed by the program. Even if we said that graded monads are dual of graded comonads, those are simpler: they are parametrised by a monoid rather than a semiring since the linearity is not at stack for forward flow analysis.
 
@@ -335,7 +335,7 @@ The PL club actually counts 3 professors (the supervisor, \href{http://www.cis.u
 \href{http://www.cis.upenn.edu/~stevez/}{Steve Zdancewic} is recognised as an international expert of functional programing languages and security. His research interests lie in theoretical computer science, programming language design and implementation (Coq verification of LLVM program transformations and randomised algorithms, type-directed program synthesis, linear types and GUI programming), language enforcing verification (language-based enforcement of information-flow policies, low-level code memory safety, understanding dynamic security policies, and authorisation logic) as well as secure concurrent and distributed computing, functional programming languages, type theory, linear and modal logics, theorem proving and mechanised metatheory. 
 
 Steve Zdancewic %received the Ph.D. in Computer Science from Cornell University in 2002 and imediatly joint the University of Pennsylvania as 
-is Full Professor with plenty of supervising experience (3 post-doc and 9 PhD students). He is the author of more than fifty publications in international journals and conferences.
+is Full Professor with plenty of supervising experience (3 post-doc and 9 PhD students). He is the author of more than fifty publications in international journals and conferences. He has more that anought experience in grant management (19 grants awarded).
 
 
 \paragraph{Return Host Institution}
@@ -356,7 +356,9 @@ academic staff, six regular seminar series.
 In addition to the host supervisor, the \href{http://www.cs.bham.ac.uk/research/groupings/theory/}{Theory group} include numerous strong figures in fields that are particularly relevant for us: Krishnaswami, Escardo are recognised specialists of linear and dependent type systems which graded type system is a refinement. Levy, Reddy are specialists of categorical semantics of programming languages and monads in particular. Jung, Vickers (and Escardo) are specialist of domain theory and can help with the formalisation of graded algebras. Finally,  Ritter is a former specialist in linear logic and is now working on security issues, as such he is a potential collaborator for Goals 2.2 and 2.3. 
 
 \paragraph{Return Host Supervisor (Scientist in charge)}
-\href{http://www.cs.bham.ac.uk/~drg/}{Dan Ghica} \todo[inline]{CV}
+\href{http://www.cs.bham.ac.uk/~drg/}{Dan Ghica} is recognised as an international expert of game semantic (denotational semantic), verification and architecture independent compiler (e.g. compliation over reconfigurable or distributed architecture). His research interests lie in theoretical computer science, denotational semantics, architecture and game-based software verification.
+
+Dan Ghica has many supervising experience (3 post-doc and 4 PhD students) and about 50 international publications in logic, verification and architecture communities. Moreover, he has plenty of experience in managing grants (8 grants awarded since 2006).
 
 
 \subsection{Capacity of the researcher to reach and re-enforce a position of professional maturity in research}
@@ -817,11 +819,17 @@ co-inductions) directly on the reduction steps of actual terms.
     \hline
     \parbox[c]{4cm}{Independent research premises} &  \parbox[c]{14cm}{UPenn maintains independent research premises.}\\
     \hline
-    \parbox[c]{4cm}{Previous Involvement in\\ Research and Training\\ Programmes} & \parbox[c]{14cm}{The scientist in charge supervised over 9 PhDs and 3 post-docs. He has been undergraduate chair of its department and was 4 time appointed as (co-)organiser of summer schools.} \\
+    \parbox[c]{4cm}{Previous and Current Involvement in Research and Training Programmes} & \parbox[c]{14cm}{The scientist in charge supervised over 9 PhDs and 3 post-docs. He has been undergraduate chair of its department and was 4 time appointed as (co-)organiser of summer schools.} \\
     \hline
-    \parbox[c]{4cm}{Current  involvement  in\\  Research and Training\\ Programmes} & \parbox[c]{14cm}{} \\
-    \hline
-    \parbox[c]{4cm}{Relevant  Publications  and/or\\  research/innovation product} & \parbox[c]{14cm}{} \\
+    \parbox[c]{4cm}{Relevant  Publications  and/or\\  research/innovation product} &
+    \parbox[c]{14cm}{
+      \begin{itemize}[leftmargin=0.5em, itemsep=0em]
+      \item B.E.Aydemir,  A. Bohannon, M. Fairbairn, J.N. Foster, B.C. Pierce, P. Sewell, D. Vytiniotis, G. Washburn, S. Weirich, and S. Zdancewic. "Mechanized metatheory for the masses: The POPLmark challenge." 2005. In Theorem Proving in Higher Order Logics.
+      \item S.Zdancewic, and A.C. Myers. "Robust declassification." 2001. In CSFW, IEEE.
+      \item D. Walker, S. Zdancewic, and J. Ligatti. "A theory of aspects." 2003. ACM SIGPLAN Notices.
+      \item J. Zhao, S. Nagarakatte, M.M.K. Martin, and S. Zdancewic. ``Formalizing the LLVM Intermediate Representation for Verified Program Transformations''. 2012. ACM POPL.
+      \end{itemize}
+    } \\
     \hline
     \hline
     \multicolumn{2}{|c|}{University of Birmingham (Dan Ghica)}\\
@@ -833,22 +841,43 @@ co-inductions) directly on the reduction steps of actual terms.
       category, and 57\% was judged 3* (internationally leading). Overall, 100\% of its output is of international standard.
       It has a thriving research environment following its rapid research-led expansion in the last ten years, having c.60
       research students, c.30 research fellows, and 36 academic staff, six regular seminar series.
+
+      In addition to the host supervisor, the Theory group include numerous strong figures in fields
+      that are particularly relevant for us. This group has weakly seminars which will definetively enrich the fellow experence.
+
+       Dan Ghica is recognised as an international expert of game
+       semantic (denotational semantic), verification and architecture independent compiler (e.g. compliation over reconfigurable 
+       or distributed architecture). His research interests lie in theoretical computer science, denotational semantics,
+       architecture and game-based software verification.
     } \\
     \hline
-    \parbox[c]{4cm}{Role and Commitment of key persons (supervisor)} & \parbox[c]{14cm}{} \\
+    \parbox[c]{4cm}{Role and Commitment of key persons (supervisor)} & 
+    \parbox[c]{14cm}{
+      The scientist in charge will collaborate scientifically with the fellow, including having formalised weekly meetings. The fellow will interact with local group members:  postdocs (notably A. Smith), PhD students and experts in programming languages, Denotational semantics, domain and security, notably M.Escardo, P.B.Levy. and U.Reddy. 
+    } \\
     \hline
     \parbox[c]{4cm}{Key  Research  Facilities,   Infrastructure and Equipment} & \parbox[c]{14cm}{The fellow will be given an office including desk, furniture, whiteboard and Internet access.} \\
     \hline
     \parbox[c]{4cm}{Independent research premises} &  \parbox[c]{14cm}{UPenn maintains independent research premises.}\\
     \hline
-    \parbox[c]{4cm}{Previous Involvement in\\ Research and Training\\ Programmes} & \parbox[c]{14cm}{} \\
+    \parbox[c]{4cm}{Previous and Current Involvement in Research and Training Programmes} & 
+    \parbox[c]{14cm}{Dan Ghica has many supervising experience (3 post-doc and 4 PhD students) and about 50 international publications 
+      in logic, verification and architecture communities. Moreover, he has some experience in managing grants (8 grants awarded since 2006) and was the (co-)founder of two workshops (GaLop and BLL-workshop).
+    } \\
     \hline
-    \parbox[c]{4cm}{Current  involvement  in\\  Research and Training\\ Programmes} & \parbox[c]{14cm}{} \\
-    \hline
-    \parbox[c]{4cm}{Relevant  Publications  and/or\\  research/innovation product} & \parbox[c]{14cm}{} \\
+    \parbox[c]{4cm}{Relevant  Publications  and/or\\  research/innovation product} & 
+    \parbox[c]{14cm}{
+      \begin{itemize}[leftmargin=0.5em, itemsep=0em]
+      \item D.R. Ghica and A.S. Murawski. “Angelic semantics of fine-grained concurrency”. 2008. In Annals of Pure and Applied Logic.
+      \item Dan D.R. Ghica. “Geometry of Synthesis: A structured approach to VLSI design”. 2007. In POPL.
+      \item A. Bakewell, A. Dimovski, D.R. Ghica, R. Lazi. “Data-abstraction refinement: A game semantic approach”. 2010. In International Journal on Software Tools for Technology Transfer.
+      \item D.R. Ghica, G. McCusker. “The regular-language semantics of second-order idealized ALGOL”. 2003. In Theoretical Computer Science.
+      \item D.R. Ghica and A.I. Smith. ``Bounded linear types in a resource semiring''. 2014. In ESOP.
+      \item Software: “Geometry of Synthesis” (GoS) hardware compiler. 
+      \end{itemize}
+    } \\
     \hline
   \end{tabular}
-
 }
 
 \section{Ethical Aspects}
